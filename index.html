@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vui Học Giao Tiếp Msutong & HSK</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Material Symbols Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <!-- Google Fonts: Plus Jakarta Sans for UI, ZCOOL XiaoWei or system fonts for Chinese -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+            chinese: ['"STKaiti"', '"Kaiti SC"', '"SimSun"', '"Microsoft YaHei"', 'serif']
+          },
+          colors: {
+            brand: {
+              50: '#FDF8F6',
+              100: '#F3EDF7',
+              200: '#EADDFF',
+              300: '#CAC4D0',
+              400: '#79747E',
+              500: '#6750A4',
+              600: '#533E85',
+              700: '#7D5260',
+              800: '#21005D',
+              900: '#1D1B1E',
+            },
+            slate: {
+              50: '#FDF8F6',
+              950: '#1D1B1E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Custom scrollbar matching Natural Tones palette */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CAC4D0;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #79747E;
+    }
+    
+    .chinese-text {
+      font-family: 'STKaiti', 'Kaiti SC', 'SimSun', 'Microsoft YaHei', serif;
+    }
+  </style>
+</head>
+<body class="bg-[#FDF8F6] text-[#1D1B1E] min-h-screen font-sans flex flex-col">
+
+  <!-- TOP HEADER -->
+  <header class="bg-[#FDF8F6] text-[#1D1B1E] border-b border-[#E7E0EC] sticky top-0 z-50 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-full bg-[#7D5260] flex items-center justify-center text-white shadow-sm">
+        <span class="material-symbols-outlined text-xl">school</span>
+      </div>
+      <div>
+        <h1 class="text-sm font-extrabold tracking-tight text-[#1D1B1E] leading-none mb-0.5">Vui Học Giao Tiếp</h1>
+        <span class="text-[10px] text-[#49454F] font-bold uppercase tracking-wider">Msutong &amp; HSK</span>
+      </div>
+    </div>
+    <div id="api-status-pill" class="flex items-center space-x-1.5 bg-[#F3EDF7] px-2.5 py-1 rounded-full text-xs font-semibold border border-[#CAC4D0] text-[#6750A4]">
+      <span class="w-2 h-2 rounded-full bg-[#6750A4] animate-pulse"></span>
+      <span id="api-status-text">Gemini Active</span>
+    </div>
+  </header>
+
+  <main class="flex-grow flex flex-col max-w-md mx-auto w-full bg-[#FDF8F6] min-h-[calc(100vh-52px)] relative">
+    
+    <!-- SCREEN 1: HOME LEVEL SELECTION -->
+    <section id="screen-home" class="p-6 flex flex-col justify-between flex-grow">
+      <div>
+        <!-- Hero Banner Section -->
+        <div class="bg-[#F3EDF7] border border-[#CAC4D0] rounded-3xl p-5.5 mb-6 text-center shadow-sm">
+          <div class="w-16 h-16 bg-[#EADDFF] text-[#6750A4] rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <span class="material-symbols-outlined text-3.5xl" style="font-size: 36px">translate</span>
+          </div>
+          <h2 class="text-xl font-extrabold text-[#1D1B1E] mb-1">Học Nói Tiếng Trung Tự Nhiên</h2>
+          <p class="text-xs text-[#49454F] max-w-xs mx-auto leading-relaxed">
+            Phản xạ giao tiếp thông minh cùng AI, thiết kế bám sát giáo trình Msutong và chuẩn HSK 1, 2, 3, 4.
+          </p>
+        </div>
+
+        <h3 class="text-xs font-bold text-[#79747E] uppercase tracking-widest mb-3 px-1">Chọn Trình Độ Để Bắt Đầu</h3>
+        
+        <div class="space-y-3.5">
+          <!-- Msutong Sơ cấp Button -->
+          <button onclick="selectLevel('Msutong Sơ cấp')" class="w-full text-left bg-white hover:bg-[#F3EDF7] border border-[#CAC4D0] hover:border-[#79747E] rounded-3xl p-4 transition-all duration-200 flex items-center justify-between group shadow-sm">
+            <div class="flex items-center space-x-3.5">
+              <div class="w-11 h-11 bg-[#EADDFF] text-[#21005D] rounded-2xl flex items-center justify-center font-extrabold text-sm shadow-sm">
+                MS1
+              </div>
+              <div>
+                <h4 class="font-extrabold text-[#1D1B1E] group-hover:text-[#6750A4] transition-colors">Msutong Sơ cấp</h4>
+                <p class="text-[11px] text-[#49454F]">Dành cho người mới bắt đầu, giao tiếp căn bản</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#79747E] group-hover:text-[#6750A4] transition-colors">chevron_right</span>
+          </button>
+
+          <!-- Msutong Trung cấp Button -->
+          <button onclick="selectLevel('Msutong Trung cấp')" class="w-full text-left bg-white hover:bg-[#F3EDF7] border border-[#CAC4D0] hover:border-[#79747E] rounded-3xl p-4 transition-all duration-200 flex items-center justify-between group shadow-sm">
+            <div class="flex items-center space-x-3.5">
+              <div class="w-11 h-11 bg-[#F3EDF7] text-[#6750A4] rounded-2xl flex items-center justify-center font-extrabold text-sm shadow-sm">
+                MS2
+              </div>
+              <div>
+                <h4 class="font-extrabold text-[#1D1B1E] group-hover:text-[#6750A4] transition-colors">Msutong Trung cấp</h4>
+                <p class="text-[11px] text-[#49454F]">Mở rộng vốn từ, thảo luận đời sống hàng ngày</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#79747E] group-hover:text-[#6750A4] transition-colors">chevron_right</span>
+          </button>
+
+          <!-- HSK 1-2 Button -->
+          <button onclick="selectLevel('HSK 1-2')" class="w-full text-left bg-white hover:bg-[#F3EDF7] border border-[#CAC4D0] hover:border-[#79747E] rounded-3xl p-4 transition-all duration-200 flex items-center justify-between group shadow-sm">
+            <div class="flex items-center space-x-3.5">
+              <div class="w-11 h-11 bg-[#E7E0EC] text-[#7D5260] rounded-2xl flex items-center justify-center font-extrabold text-sm shadow-sm">
+                H12
+              </div>
+              <div>
+                <h4 class="font-extrabold text-[#1D1B1E] group-hover:text-[#6750A4] transition-colors">HSK 1-2</h4>
+                <p class="text-[11px] text-[#49454F]">Luyện thi HSK cơ bản và cấu trúc câu thông dụng</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#79747E] group-hover:text-[#6750A4] transition-colors">chevron_right</span>
+          </button>
+
+          <!-- HSK 3-4 Button -->
+          <button onclick="selectLevel('HSK 3-4')" class="w-full text-left bg-white hover:bg-[#F3EDF7] border border-[#CAC4D0] hover:border-[#79747E] rounded-3xl p-4 transition-all duration-200 flex items-center justify-between group shadow-sm">
+            <div class="flex items-center space-x-3.5">
+              <div class="w-11 h-11 bg-[#7D5260] text-white rounded-2xl flex items-center justify-center font-extrabold text-sm shadow-sm">
+                H34
+              </div>
+              <div>
+                <h4 class="font-extrabold text-[#1D1B1E] group-hover:text-[#6750A4] transition-colors">HSK 3-4</h4>
+                <p class="text-[11px] text-[#49454F]">Giao tiếp chuyên sâu, phỏng vấn, công việc</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#79747E] group-hover:text-[#6750A4] transition-colors">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="mt-8 border-t border-[#E7E0EC] pt-4 text-center">
+        <p class="text-[11px] text-[#79747E]">Phiên bản 1.0 • Đọc phát âm tự động qua Web Speech</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: WORKSPACE (ACTIVITIES 1 & 2) -->
+    <section id="screen-workspace" class="hidden flex flex-col flex-grow">
+      
+      <!-- Current Level Header Info -->
+      <div class="bg-[#F3EDF7] px-4 py-3 flex items-center justify-between border-b border-[#CAC4D0]">
+        <button onclick="goBackToHome()" class="flex items-center space-x-1.5 text-[#49454F] hover:text-[#6750A4] transition-colors font-extrabold">
+          <span class="material-symbols-outlined text-lg">arrow_back</span>
+          <span class="text-xs font-bold">Chọn lại trình độ</span>
+        </button>
+        <div class="bg-[#EADDFF] text-[#21005D] text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider shadow-sm" id="active-level-label">
+          MSUTONG SƠ CẤP
+        </div>
+      </div>
+
+      <!-- STEP / ACTIVITY SEGMENTED CONTROL -->
+      <div class="px-4 py-3 bg-[#FDF8F6]">
+        <div class="flex rounded-full border border-[#79747E] overflow-hidden min-h-[40px] bg-transparent p-0">
+          <button id="btn-tab-vocab" onclick="switchTab('vocab')" class="flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-[#EADDFF] text-[#21005D] border-r border-[#79747E] outline-none">
+            <span class="material-symbols-outlined text-sm">menu_book</span>
+            <span>B1: Từ Vựng &amp; Mẫu Câu</span>
+          </button>
+          <button id="btn-tab-chat" onclick="switchTab('chat')" class="flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-transparent text-[#49454F] hover:bg-[#EADDFF]/20 outline-none">
+            <span class="material-symbols-outlined text-sm">forum</span>
+            <span>B2: Phản Xạ Nhập Vai AI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- WORKSPACE PANELS CONTAINER -->
+      <div class="flex-grow flex flex-col p-4 bg-[#FDF8F6] overflow-y-auto" style="max-height: calc(100vh - 150px)">
+        
+        <!-- LOADING SPINNER (FOR TOPIC GENERATION) -->
+        <div id="workspace-loading" class="hidden flex-grow flex flex-col items-center justify-center py-12">
+          <div class="w-12 h-12 border-4 border-[#EADDFF] border-t-[#6750A4] rounded-full animate-spin mb-4"></div>
+          <p class="text-sm font-bold text-[#1D1B1E]">Đang khởi tạo chủ đề học cùng AI...</p>
+          <p class="text-xs text-[#79747E] mt-1">Quá trình này có thể mất vài giây</p>
+        </div>
+
+        <!-- TAB 1: VOCABULARY & SENTENCES -->
+        <div id="tab-vocab-panel" class="space-y-4">
+          <!-- Topic Header Card -->
+          <div class="bg-white rounded-3xl p-5 border border-[#CAC4D0] shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#6750A4] bg-[#EADDFF] px-2.5 py-1 rounded-full">Chủ đề giao tiếp</span>
+              <button onclick="generateNewTopic()" class="flex items-center space-x-1 text-xs text-[#6750A4] hover:text-[#21005D] font-bold bg-[#F3EDF7] hover:bg-[#EADDFF] px-3.5 py-1.5 rounded-full border border-[#CAC4D0] transition-colors">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                <span>Chủ đề mới</span>
+              </button>
+            </div>
+            <h3 id="vocab-topic-title" class="text-lg font-extrabold text-[#1D1B1E]">Đang tải chủ đề...</h3>
+          </div>
+
+          <!-- Section 1.1: Core Vocabulary -->
+          <div>
+            <div class="flex items-center space-x-1.5 mb-3 px-1">
+              <span class="material-symbols-outlined text-sm text-[#6750A4]">bookmark_star</span>
+              <h4 class="text-xs font-bold text-[#79747E] uppercase tracking-wider">Từ Vựng Trọng Tâm</h4>
+            </div>
+            
+            <div id="vocab-list-container" class="space-y-3.5">
+              <!-- Vocab item template -->
+            </div>
+          </div>
+
+          <!-- Section 1.2: Sample Sentences -->
+          <div class="pt-2">
+            <div class="flex items-center space-x-1.5 mb-3 px-1">
+              <span class="material-symbols-outlined text-sm text-[#6750A4]">translate</span>
+              <h4 class="text-xs font-bold text-[#79747E] uppercase tracking-wider">Mẫu Câu Giao Tiếp Khuyên Dùng</h4>
+            </div>
+
+            <div id="sentence-list-container" class="space-y-3">
+              <!-- Sentence item template -->
+            </div>
+          </div>
+          
+          <!-- Jump to Chat Prompt Callout -->
+          <div class="bg-[#F3EDF7] border border-[#CAC4D0] rounded-3xl p-5 text-center shadow-sm">
+            <p class="text-xs text-[#49454F] mb-3.5 leading-relaxed">Đã học xong từ vựng và câu mẫu? Hãy chuyển sang <b>Bước 2</b> để thực hành phản xạ thực tế cùng AI ngay!</p>
+            <button onclick="switchTab('chat')" class="inline-flex items-center space-x-1.5 bg-[#6750A4] hover:bg-[#533E85] text-white font-extrabold text-xs px-5 py-2.5 rounded-full transition-all shadow-md active:translate-y-0.5">
+              <span>Bắt Đầu Hội Thoại Nhập Vai</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 2: INTERACTIVE ROLE-PLAY WITH AI -->
+        <div id="tab-chat-panel" class="hidden flex-grow flex flex-col space-y-3">
+          
+          <!-- Role-play Context Card -->
+          <div class="bg-[#7D5260] text-white rounded-3xl p-4 shadow-sm flex items-start space-x-3 border border-[#7D5260]/10">
+            <div class="w-10 h-10 bg-white/15 rounded-full flex items-center justify-center flex-shrink-0 text-white shadow-sm">
+              <span class="material-symbols-outlined text-xl">smart_toy</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="text-[11px] font-extrabold text-rose-100 uppercase tracking-widest">AI Đang Đóng Vai Đối Thoại</h4>
+              <p id="chat-role-description" class="text-xs text-white/95 font-medium leading-relaxed mt-0.5">Bạn đồng hành Trung Quốc thảo luận chủ đề học tập.</p>
+            </div>
+          </div>
+
+          <!-- Conversation Scroll View -->
+          <div id="chat-messages-container" class="flex-grow space-y-3 bg-white rounded-3xl border border-[#CAC4D0] p-4 min-h-[300px] overflow-y-auto flex flex-col shadow-inner">
+            <!-- Messages appear here -->
+          </div>
+
+          <!-- Typing helper container for quick answers -->
+          <div id="chat-suggestions-container" class="space-y-1.5">
+            <p class="text-[10px] font-bold text-[#79747E] px-1">Gợi ý trả lời nhanh cho bạn:</p>
+            <div id="chat-suggestions-list" class="flex flex-wrap gap-1.5">
+              <!-- Suggestion pills -->
+            </div>
+          </div>
+
+          <!-- Typing Bar -->
+          <div class="flex items-center space-x-2 bg-white rounded-3xl border border-[#CAC4D0] p-1.5 pl-3 shadow-sm focus-within:border-[#6750A4] transition-all">
+            <input id="chat-input-field" type="text" placeholder="Nhập câu trả lời bằng tiếng Trung..." class="flex-grow text-sm text-[#1D1B1E] py-1.5 outline-none rounded-lg" onkeydown="if(event.key === 'Enter') sendChatMessage()">
+            <button onclick="sendChatMessage()" class="w-10 h-10 bg-[#6750A4] hover:bg-[#533E85] text-white rounded-full flex items-center justify-center transition-all shadow-sm active:scale-95">
+              <span class="material-symbols-outlined text-lg">send</span>
+            </button>
+          </div>
+          
+          <!-- Warning/Reset buttons -->
+          <div class="flex justify-between items-center px-1">
+            <button onclick="resetConversation()" class="flex items-center space-x-1 text-[11px] font-bold text-[#7D5260] hover:text-red-800 transition-colors">
+              <span class="material-symbols-outlined text-sm">restart_alt</span>
+              <span>Làm mới hội thoại</span>
+            </button>
+            <p class="text-[10px] text-[#79747E]">Hãy gõ Chữ Hán hoặc Pinyin</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FALLBACK DATASET -->
+  <script>
+    const FALLBACK_DATA = {
+      "Msutong Sơ cấp": [
+        {
+          topic: "Chào hỏi và làm quen (Greeting & Introduction)",
+          vocab: [
+            {hanzi: "你好", pinyin: "nǐ hǎo", vietnamese: "Chào bạn", example_hanzi: "你好！很高兴认识你。", example_pinyin: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ.", example_vietnamese: "Chào bạn! Rất vui được quen biết bạn."},
+            {hanzi: "叫", pinyin: "jiào", vietnamese: "Tên là, gọi là", example_hanzi: "我叫阮文南。", example_pinyin: "Wǒ jiào Ruǎn Wénnán.", example_vietnamese: "Tôi tên là Nguyễn Văn Nam."},
+            {hanzi: "什么", pinyin: "shénme", vietnamese: "Cái gì", example_hanzi: "你叫什么名字？", example_pinyin: "Nǐ jiào shénme míngzi?", example_vietnamese: "Bạn tên là gì?"},
+            {hanzi: "越南", pinyin: "Yuènán", vietnamese: "Việt Nam", example_hanzi: "我是越南人。", example_pinyin: "Wǒ shì Yuènánrén.", example_vietnamese: "Tôi là người Việt Nam."}
+          ],
+          sentences: [
+            {hanzi: "你好！很高兴认识你。", pinyin: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ.", vietnamese: "Chào bạn! Rất vui được quen biết bạn."},
+            {hanzi: "请问，你贵姓？", pinyin: "Qǐngwèn, nǐ guìxìng?", vietnamese: "Cho hỏi, quý danh của bạn là gì?"},
+            {hanzi: "你是老师吗？", pinyin: "Nǐ shì lǎoshī ma?", vietnamese: "Bạn là giáo viên phải không?"}
+          ],
+          ai_role: "Một người bạn Trung Quốc nhiệt tình muốn làm quen với bạn.",
+          chat_flow: {
+            initial: {
+              hanzi: "你好！很高兴认识你。你叫什么名字？",
+              pinyin: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ. Nǐ jiào shénme míngzi?",
+              vietnamese: "Chào bạn! Rất vui được làm quen với bạn. Bạn tên là gì?"
+            },
+            suggestions: [
+              "我叫小明，你是中国人吗？",
+              "你好！我叫阿南。"
+            ],
+            replies: [
+              {
+                keywords: ["小明", "阿南", "我叫", "名字"],
+                ai_reply_hanzi: "认识你很高兴！你是越南人吗？你现在在哪里工作还是学习？",
+                ai_reply_pinyin: "Rènshi nǐ hěn gāoxìng! Nǐ shì Yuènánrén ma? Nǐ xiànzài zài nǎlǐ gōngzuò háishì xuéxí?",
+                ai_reply_vietnamese: "Rất vui được quen biết bạn! Bạn là người Việt Nam phải không? Bạn đang làm việc hay học tập ở đâu?",
+                suggestions: ["我是越南人，在河内学习。", "我是越南留学生。"]
+              },
+              {
+                keywords: ["越南人", "河内", "学生", "学习", "工作"],
+                ai_reply_hanzi: "太好了！越南是一个美丽的国家。你学习汉语多久了？觉得汉语难吗？",
+                ai_reply_pinyin: "Tài hǎo le! Yuènán shì yīgè měilì de guójiā. Nǐ xuéxí Hànyǔ duōjiǔ le? Juéde Hànyǔ nán ma?",
+                ai_reply_vietnamese: "Tuyệt quá! Việt Nam là một đất nước xinh đẹp. Bạn học tiếng Trung bao lâu rồi? Có thấy tiếng Trung khó không?",
+                suggestions: ["我学汉语三个月了，我觉得不太难。", "汉语拼音不难，汉字有点儿难。"]
+              }
+            ]
+          }
+        },
+        {
+          topic: "Gọi món ăn ở nhà hàng (Ordering Food at a Restaurant)",
+          vocab: [
+            {hanzi: "服务员", pinyin: "fúwùyuán", vietnamese: "Phục vụ viên", example_hanzi: "服务员，我要点菜。", example_pinyin: "Fúwùyuán, wǒ yào diǎncài.", example_vietnamese: "Phục vụ ơi, tôi muốn gọi món."},
+            {hanzi: "点菜", pinyin: "diǎn cài", vietnamese: "Gọi món", example_hanzi: "你们点什么菜？", example_pinyin: "Nǐmen diǎn shénme cài?", example_vietnamese: "Các bạn gọi món gì?"},
+            {hanzi: "饺子", pinyin: "jiǎozi", vietnamese: "Sủi cảo", example_hanzi: "我要一盘饺子。", example_pinyin: "Wǒ yào yī pán jiǎozi.", example_vietnamese: "Tôi muốn một đĩa sủi cảo."},
+            {hanzi: "米饭", pinyin: "mǐfàn", vietnamese: "Cơm trắng", example_hanzi: "给我一碗米饭。", example_pinyin: "Gěi wǒ yī wǎn mǐfàn.", example_vietnamese: "Cho tôi một bát cơm."}
+          ],
+          sentences: [
+            {hanzi: "服务员，我们要点菜。", pinyin: "Fúwùyuán, wǒmen yào diǎncài.", vietnamese: "Phục vụ ơi, chúng tôi muốn gọi món."},
+            {hanzi: "你们这儿有什么特色菜？", pinyin: "Nǐmen zhè'er yǒu shénme tèsè cài?", vietnamese: "Ở đây các bạn có món đặc sản gì?"},
+            {hanzi: "一共多少钱？", pinyin: "Yīgòng duōshǎo qián?", vietnamese: "Tổng cộng bao nhiêu tiền?"}
+          ],
+          ai_role: "Người phục vụ tại một nhà hàng ăn uống truyền thống Trung Hoa.",
+          chat_flow: {
+            initial: {
+              hanzi: "您好！欢迎光临。请问你们几位？想吃点儿什么？",
+              pinyin: "Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐmen jǐ wèi? Xiǎng chī diǎner shénme?",
+              vietnamese: "Chào ngài! Chào mừng quý khách. Cho hỏi quý khách đi mấy người? Muốn ăn chút gì ạ?"
+            },
+            suggestions: [
+              "一位。我想点一盘饺子。",
+              "两位。你们有什么特色菜？"
+            ],
+            replies: [
+              {
+                keywords: ["一位", "两位", "饺子", "特色菜"],
+                ai_reply_hanzi: "好的！我们这里的特色菜是北京烤鸭和麻婆豆腐，非常美味。您要尝尝吗？",
+                ai_reply_pinyin: "Hǎo de! Wǒmen zhèlǐ de tèsè cài shì Běijīng kǎoyā hé Mápó dòufu, fēicháng měiwèi. Nín yào chángchang ma?",
+                ai_reply_vietnamese: "Dạ được! Đặc sản ở đây là Vịt quay Bắc Kinh và Đậu phụ Ma Bà, ngon lắm ạ. Quý khách có muốn thử không?",
+                suggestions: ["好，来一个麻婆豆腐。", "不要烤鸭，给我一碗米饭。"]
+              }
+            ]
+          }
+        },
+        {
+          topic: "Gia đình và nghề nghiệp (Family & Professions)",
+          vocab: [
+            {hanzi: "照片", pinyin: "zhàopiàn", vietnamese: "Bức ảnh", example_hanzi: "这是我家的照片。", example_pinyin: "Zhè shì wǒ jiā de zhàopiàn.", example_vietnamese: "Đây là ảnh của gia đình tôi."},
+            {hanzi: "爸爸", pinyin: "bàba", vietnamese: "Bố", example_hanzi: "我爸爸是医生。", example_pinyin: "Wǒ bàba shì yīshēng.", example_vietnamese: "Bố tôi là bác sĩ."},
+            {hanzi: "妈妈", pinyin: "māma", vietnamese: "Mẹ", example_hanzi: "我妈妈不工作。", example_pinyin: "Wǒ māma bù gōngzuò.", example_vietnamese: "Mẹ tôi không làm việc."},
+            {hanzi: "医生", pinyin: "yīshēng", vietnamese: "Bác sĩ", example_hanzi: "他在医院工作。", example_pinyin: "Tā zài yīyuàn gōngzuò.", example_vietnamese: "Anh ấy làm việc ở bệnh viện."}
+          ],
+          sentences: [
+            {hanzi: "你家有几口人？", pinyin: "Nǐ jiā yǒu jǐ kǒu rén?", vietnamese: "Nhà bạn có mấy người?"},
+            {hanzi: "我爸爸是医生，妈妈是老师。", pinyin: "Wǒ bàba shì yīshēng, māma shì lǎoshī.", vietnamese: "Bố tôi là bác sĩ, mẹ là giáo viên."},
+            {hanzi: "这是我弟弟，他是学生。", pinyin: "Zhè shì wǒ dìdi, tā shì xuéshēng.", vietnamese: "Đây là em trai tôi, nó là học sinh."}
+          ],
+          ai_role: "Người bạn học Trung Quốc hỏi thăm về gia đình của bạn.",
+          chat_flow: {
+            initial: {
+              hanzi: "你的家乡在哪里？你家有几口人？",
+              pinyin: "Nǐ de jiāxiāng zài nǎlǐ? Nǐ jiā yǒu jǐ kǒu rén?",
+              vietnamese: "Quê hương bạn ở đâu? Nhà bạn có mấy người?"
+            },
+            suggestions: [
+              "我的家乡在河内。我家有四口人。",
+              "我家有三口人，爸爸、妈妈和我。"
+            ],
+            replies: [
+              {
+                keywords: ["四口人", "三口人", "河内", "爸爸", "妈妈"],
+                ai_reply_hanzi: "挺好的！那你爸爸和妈妈做什么工作？他们辛苦吗？",
+                ai_reply_pinyin: "Tǐng hǎo de! Nà nǐ bàba hé māma zuò shénme gōngzuò? Tāmen xīnkǔ ma?",
+                ai_reply_vietnamese: "Rất tốt! Vậy bố mẹ bạn làm công việc gì? Họ có vất vả không?",
+                suggestions: ["我爸爸是老师，妈妈是医生。", "他们工作不辛苦。"]
+              }
+            ]
+          }
+        }
+      ],
+      "Msutong Trung cấp": [
+        {
+          topic: "Thuê phòng và tìm căn hộ (Renting an Apartment)",
+          vocab: [
+            {hanzi: "租房", pinyin: "zū fáng", vietnamese: "Thuê nhà", example_hanzi: "我想在学校附近租房。", example_pinyin: "Wǒ xiǎng zài xuéxiào fùjìn zū fáng.", example_vietnamese: "Tôi muốn thuê nhà ở gần trường học."},
+            {hanzi: "房租", pinyin: "fángzū", vietnamese: "Tiền thuê nhà", example_hanzi: "这间房子的房租是多少？", example_pinyin: "Zhè jiān fángzi de fángzū shì duōshǎo?", example_vietnamese: "Tiền thuê căn nhà này là bao nhiêu?"},
+            {hanzi: "押金", pinyin: "yājīn", vietnamese: "Tiền đặt cọc", example_hanzi: "租房需要交押金吗？", example_pinyin: "Zuūfáng xūyào jiāo yājīn ma?", example_vietnamese: "Thuê nhà có cần nộp tiền đặt cọc không?"},
+            {hanzi: "交通", pinyin: "jiāotōng", vietnamese: "Giao thông", example_hanzi: "这里的交通很方便。", example_pinyin: "Zhèlǐ de jiāotōng hěn fāngbiàn.", example_vietnamese: "Giao thông ở đây rất thuận tiện."}
+          ],
+          sentences: [
+            {hanzi: "我想租一套两室一厅的房子。", pinyin: "Wǒ xiǎng zū yī tào liǎng shì yī tīng de fángzi.", vietnamese: "Tôi muốn thuê một căn hộ gồm hai phòng ngủ một phòng khách."},
+            {hanzi: "房租可以便宜一点吗？", pinyin: "Fángzū kěyǐ piányi yīdiǎn ma?", vietnamese: "Tiền thuê nhà có thể giảm bớt chút không?"},
+            {hanzi: "这里能上网和做饭吗？", pinyin: "Zhèlǐ néng shàngwǎng hé zuòfàn ma?", vietnamese: "Ở đây có thể lên mạng và nấu ăn được không?"}
+          ],
+          ai_role: "Một chủ nhà (đại lý nhà đất) tại Bắc Kinh đang tư vấn căn hộ.",
+          chat_flow: {
+            initial: {
+              hanzi: "您好！想租什么样的房子？预算大概是多少钱一个月？",
+              pinyin: "Nín hǎo! Xiǎng zū shénmeyàng de fángzi? Yùsuàn dàgài shì duōshǎo qián yīgè yuè?",
+              vietnamese: "Chào ngài! Muốn thuê phòng như thế nào ạ? Ngân sách khoảng bao nhiêu tiền một tháng?"
+            },
+            suggestions: [
+              "我想租单身公寓，预算两千元左右。",
+              "两室一厅，房租不要太贵。"
+            ],
+            replies: [
+              {
+                keywords: ["单身", "公寓", "两千", "两室"],
+                ai_reply_hanzi: "我明白了。我们这儿有一套靠近地铁站的单间，交通极佳，只要2200元，要看看照片吗？",
+                ai_reply_pinyin: "Wǒ míngbai le. Wǒmen zhè'er yǒu yī tào kàojìn dìtiě zhàn de dānjiān, jiāotōng jí jiā, zhǐyào liǎngqiān èrbǎi yuán, yào kànkan zhàopiàn ma?",
+                ai_reply_vietnamese: "Tôi hiểu rồi. Ở đây chúng tôi có một căn phòng đơn gần ga tàu điện ngầm, giao thông cực tiện, chỉ 2200 tệ, bạn muốn xem ảnh không?",
+                suggestions: ["好，给我发照片看看。", "押金怎么付？"]
+              }
+            ]
+          }
+        },
+        {
+          topic: "Mua sắm quần áo (Shopping for clothes)",
+          vocab: [
+            {hanzi: "衬衫", pinyin: "chènshān", vietnamese: "Áo sơ mi", example_hanzi: "这件衬衫很合身。", example_pinyin: "Zhè jiàn chènshān hěn héshēn.", example_vietnamese: "Cái áo sơ mi này rất vừa vặn."},
+            {hanzi: "试穿", pinyin: "shìchuān", vietnamese: "Mặc thử", example_hanzi: "我可以试穿一下吗？", example_pinyin: "Wǒ kěyǐ shìchuān yīxià ma?", example_vietnamese: "Tôi có thể mặc thử một chút không?"},
+            {hanzi: "打折", pinyin: "dǎ zhé", vietnamese: "Giảm giá", example_hanzi: "这件衣服打几折？", example_pinyin: "Zhè jiàn yīfu dǎ jǐ zhé?", example_vietnamese: "Bộ quần áo này giảm giá bao nhiêu?"}
+          ],
+          sentences: [
+            {hanzi: "我觉得这件颜色有点儿深。", pinyin: "Wǒ juéde zhè jiàn yánsè yǒudiǎner shēn.", vietnamese: "Tôi thấy màu của bộ này hơi đậm."},
+            {hanzi: "还有大一点儿的尺码吗？", pinyin: "Hái yǒu dà yīdiǎner de chǐmǎ ma?", vietnamese: "Còn kích cỡ lớn hơn chút không?"},
+            {hanzi: "刷卡还是扫码支付？", pinyin: "Shuākǎ háishì sǎomǎ zhīfù?", vietnamese: "Thanh toán bằng quẹt thẻ hay quét mã?"}
+          ],
+          ai_role: "Nhân viên bán hàng tại trung tâm mua sắm thời trang thời thượng.",
+          chat_flow: {
+            initial: {
+              hanzi: "欢迎光临！请问您想看看哪种衣服？我们现在有很多新款在打折。",
+              pinyin: "Huānyíng guānglín! Qǐngwèn nín xiǎng kànkan nǎ zhǒng yīfu? Wǒmen xiànzài yǒu hěnduō xīnkuǎn zài dǎzhé.",
+              vietnamese: "Chào mừng quý khách! Cho hỏi quý khách muốn xem loại quần áo nào ạ? Chúng tôi đang có nhiều mẫu mới giảm giá."
+            },
+            suggestions: [
+              "我想看看衬衫，可以试穿吗？",
+              "这件外套打几折？"
+            ],
+            replies: [
+              {
+                keywords: ["衬衫", "试穿", "外套", "打折"],
+                ai_reply_hanzi: "当然可以试穿！试衣间在这边。这件衬衫打八折，折后只要150元，特别划算。",
+                ai_reply_pinyin: "Dāngrán kěyǐ shìchuān! Shìyījiān zài zhèbiān. Zhè jiàn chènshān dǎ bā zhé, zhé hòu zhǐyào yībǎi wǔshí yuán, tèbié huásuàn.",
+                ai_reply_vietnamese: "Tất nhiên là mặc thử được chứ ạ! Phòng thử đồ ở phía này. Chiếc sơ mi này giảm 20% (bát chiết), sau giảm chỉ còn 150 tệ, cực kì hời.",
+                suggestions: ["颜色还有别的吗？", "好，我试试。"]
+              }
+            ]
+          }
+        },
+        {
+          topic: "Hỏi đường và đi lại (Asking for Directions & Transit)",
+          vocab: [
+            {hanzi: "地铁站", pinyin: "dìtiězhàn", vietnamese: "Ga tàu điện ngầm", example_hanzi: "离地铁站有多远？", example_pinyin: "Lí dìtiězhàn yǒu duō yuǎn?", example_vietnamese: "Cách ga tàu điện ngầm bao xa?"},
+            {hanzi: "拐", pinyin: "guǎi", vietnamese: "Rẽ, quẹo", example_hanzi: "往右拐就到了。", example_pinyin: "Wǎng yòu guǎi jiù dào le.", example_vietnamese: "Rẽ phải là tới nơi."},
+            {hanzi: "红绿灯", pinyin: "hónglǜdēng", vietnamese: "Đèn xanh đèn đỏ", example_hanzi: "在红绿灯路口往左折。", example_pinyin: "Zài hónglǜdēng lùkǒu wǎng zuǒ zhé.", example_vietnamese: "Rẽ trái ở ngã tư đèn xanh đèn đỏ."}
+          ],
+          sentences: [
+            {hanzi: "请问，去故宫怎么走？", pinyin: "Qǐngwèn, qù Gùgōng zěnme zǒu?", vietnamese: "Cho hỏi, đi Cố Cung đi thế nào?"},
+            {hanzi: "你直走两百米，然后往右拐。", pinyin: "Nǐ zhízǒu liǎngbǎi mǐ, ránhòu wǎng yòu guǎi.", vietnamese: "Bạn đi thẳng hai trăm mét, sau đó rẽ phải."},
+            {hanzi: "坐公交车大概需要半个小时。", pinyin: "Zuò gōngjiāochē dàgài xūyào bàn gè xiǎoshí.", vietnamese: "Đi xe buýt mất khoảng nửa tiếng đồng hồ."}
+          ],
+          ai_role: "Một người dân Bắc Kinh bản địa vui tính chỉ đường cho bạn.",
+          chat_flow: {
+            initial: {
+              hanzi: "你好！小伙子/姑娘，去哪里啊？是不是迷路了？",
+              pinyin: "Nǐ hǎo! Xiǎohuǒzi/Gūniang, qù nǎlǐ a? Shì bú shì mílù le?",
+              vietnamese: "Chào bạn! Cậu bé/cô bé, đi đâu thế? Có phải bị lạc đường rồi không?"
+            },
+            suggestions: [
+              "我想去最近的地铁站，怎么走？",
+              "请问，这里离天安门远不远？"
+            ],
+            replies: [
+              {
+                keywords: ["地铁站", "天安门", "怎么走", "远"],
+                ai_reply_hanzi: "不远！你顺着这条路直走，过第一个红绿灯右拐就看到地铁站了。走过去也就五分钟。",
+                ai_reply_pinyin: "Bù yuǎn! Nǐ shùnzhe zhè tiáo lù zhízǒu, guò dì yī gè hónglǜdēng yòu guǎi jiù kàndào dìtiězhàn le. Zǒu guòqu yě jiù wǔ fēnzhōng.",
+                ai_reply_vietnamese: "Không xa đâu! Bạn cứ đi thẳng theo con đường này, qua cột đèn xanh đèn đỏ đầu tiên rẽ phải là thấy ga tàu điện ngầm rồi. Đi bộ mất tầm 5 phút thôi.",
+                suggestions: ["谢谢您！十分感谢！", "地铁站的名字叫什么？"]
+              }
+            ]
+          }
+        }
+      ],
+      "HSK 1-2": [
+        {
+          topic: "Nói về thời tiết và sở thích (Weather & Hobbies)",
+          vocab: [
+            {hanzi: "天气", pinyin: "tiānqì", vietnamese: "Thời tiết", example_hanzi: "今天天气很好。", example_pinyin: "Jīntiān tiānqì hěn hǎo.", example_vietnamese: "Hôm nay thời tiết rất tốt."},
+            {hanzi: "游泳", pinyin: "yóuyǒng", vietnamese: "Bơi lội", example_hanzi: "我喜欢夏天去游泳。", example_pinyin: "Wǒ xǐhuan xiàtiān qù yóuyǒng.", example_vietnamese: "Tôi thích đi bơi vào mùa hè."},
+            {hanzi: "踢足球", pinyin: "tī zúqiú", vietnamese: "Đá bóng", example_hanzi: "星期六我们去踢足球吧。", example_pinyin: "Xīngqīliù wǒmen qù tī zúqiú ba.", example_vietnamese: "Thứ bảy chúng ta đi đá bóng nhé."}
+          ],
+          sentences: [
+            {hanzi: "今天天气怎么样？", pinyin: "Jīntiān tiānqì zěnmeyàng?", vietnamese: "Thời tiết hôm nay thế nào?"},
+            {hanzi: "明天不会下雨，很暖和。", pinyin: "Míngtiān bú huì xiàyǔ, hěn nuǎnhuo.", vietnamese: "Mai không mưa đâu, rất ấm áp."},
+            {hanzi: "你的爱好是什么？", pinyin: "Nǐ de àihào shì shénme?", vietnamese: "Sở thích của bạn là gì?"}
+          ],
+          ai_role: "Một người bạn học giao lưu văn hóa quốc tế.",
+          chat_flow: {
+            initial: {
+              hanzi: "你好！今天天气太冷了，你想在家里看书还是去外面运动？",
+              pinyin: "Nǐ hǎo! Jīntiān tiānqì tài lěng le, nǐ xiǎng zài jiālǐ kànshū háishì qù wàimiàn yùndòng?",
+              vietnamese: "Chào bạn! Hôm nay trời lạnh quá, bạn muốn ở nhà đọc sách hay ra ngoài vận động?"
+            },
+            suggestions: [
+              "我想在家里看书，外面太冷了。",
+              "我想去打篮球，我不怕冷。"
+            ],
+            replies: [
+              {
+                keywords: ["看书", "家里", "冷"],
+                ai_reply_hanzi: "我也觉得家里最舒服。你喜欢看什么书？小说的还是历史的？",
+                ai_reply_pinyin: "Wǒ yě juéde jiālǐ zuì shūfu. Nǐ xǐhuan kàn shénme shū? Xiǎoshuō de háishì lìshǐ de?",
+                ai_reply_vietnamese: "Tôi cũng thấy ở nhà là thoải mái nhất. Bạn thích đọc sách gì? Tiểu thuyết hay lịch sử?",
+                suggestions: ["我喜欢看中文小说。", "我都喜欢。"]
+              }
+            ]
+          }
+        },
+        {
+          topic: "Kế hoạch cuối tuần (Weekend plans)",
+          vocab: [
+            {hanzi: "周末", pinyin: "zhōumò", vietnamese: "Cuối tuần", example_hanzi: "周末你有什么打算？", example_pinyin: "Zhōumò nǐ yǒu shénme dǎsuàn?", example_vietnamese: "Cuối tuần bạn có dự định gì?"},
+            {hanzi: "电影院", pinyin: "diànyǐngyuàn", vietnamese: "Rạp chiếu phim", example_hanzi: "我们去电影院看电影吧。", example_pinyin: "Wǒmen qù diànyǐngyuàn kàn diànyǐng ba.", example_vietnamese: "Chúng ta đi rạp chiếu phim xem phim đi."},
+            {hanzi: "买东西", pinyin: "mǎi dōngxi", vietnamese: "Mua sắm đồ đạc", example_hanzi: "我和妈妈去商场买东西。", example_pinyin: "Wǒ hé māma qù shāngchǎng mǎi dōngxi.", example_vietnamese: "Tôi và mẹ đi trung tâm thương mại mua đồ."}
+          ],
+          sentences: [
+            {hanzi: "你这个周末想去哪里玩儿？", pinyin: "Nǐ zhège zhōumò xiǎng qù nǎlǐ wánr?", vietnamese: "Cuối tuần này bạn muốn đi đâu chơi?"},
+            {hanzi: "我想请你吃中国菜。", pinyin: "Wǒ xiǎng qǐng nǐ chī Zhōngguócài.", vietnamese: "Tôi muốn mời bạn ăn món Trung Quốc."},
+            {hanzi: "太好了，我们不见不散！", pinyin: "Tài hǎo le, wǒmen bú jiàn bú sàn!", vietnamese: "Tuyệt quá, chúng ta không gặp không về nhé!"}
+          ],
+          ai_role: "Bạn cùng lớp rủ rê đi chơi cuối tuần.",
+          chat_flow: {
+            initial: {
+              hanzi: "喂！这周六有一部新电影上映，你要不要一起去电影院看？",
+              pinyin: "Wèi! Zhè zhōuliù yǒu yī bù xīn diànyǐng shàngyìng, nǐ yào bú yào yīqǐ qù diànyǐngyuàn kàn?",
+              vietnamese: "Alo! Thứ bảy tuần này có phim mới ra rạp, bạn có muốn cùng đi rạp xem không?"
+            },
+            suggestions: [
+              "太好了！我很想去，几点开始？",
+              "不好意思，我周六要考试。"
+            ],
+            replies: [
+              {
+                keywords: ["想去", "几点", "好啊"],
+                ai_reply_hanzi: "电影下午三点开始，我们两点半在商场门口等，怎么样？看完还可以一起吃晚饭。",
+                ai_reply_pinyin: "Diànyǐng xiàwǔ sān diǎn kāishǐ, wǒmen liǎng diǎn bàn zài shāngchǎng ménkǒu děng, zěnmeyàng? Kàn wán hái kěyǐ yīqǐ chī wǎnfàn.",
+                ai_reply_vietnamese: "Phim chiếu lúc 3 giờ chiều, chúng mình hẹn nhau ở cổng trung tâm thương mại lúc 2 rưỡi nhé? Xem xong còn có thể cùng ăn tối nữa.",
+                suggestions: ["太棒了，一言为定！", "行，不见不散！"]
+              }
+            ]
+          }
+        }
+      ],
+      "HSK 3-4": [
+        {
+          topic: "Phỏng vấn xin việc (Job Interview)",
+          vocab: [
+            {hanzi: "面试", pinyin: "miànshì", vietnamese: "Phỏng vấn", example_hanzi: "明天我要去一家公司面试。", example_pinyin: "Míngtiān wǒ yào qù yī jiā gōngsī miànshì.", example_vietnamese: "Ngày mai tôi phải tới một công ty để phỏng vấn."},
+            {hanzi: "简历", pinyin: "jiǎnlì", vietnamese: "Sơ yếu lý lịch, CV", example_hanzi: "这是我的个人简历。", example_pinyin: "Zhè shì wǒ de gèrén jiǎnlì.", example_vietnamese: "Đây là CV cá nhân của tôi."},
+            {hanzi: "招聘", pinyin: "zhāopìn", vietnamese: "Tuyển dụng", example_hanzi: "这家公司正在招聘翻译。", example_pinyin: "Zhè jiā gōngsī zhèngzài zhāopìn fānyì.", example_vietnamese: "Công ty này đang tuyển dụng phiên dịch viên."},
+            {hanzi: "流利", pinyin: "liúlì", vietnamese: "Trôi chảy, lưu loát", example_hanzi: "他的汉语说得很流利。", example_pinyin: "Tā de Hànyǔ shuō de hěn liúlì.", example_vietnamese: "Tiếng Trung của anh ấy nói rất trôi chảy."}
+          ],
+          sentences: [
+            {hanzi: "请先简单地介绍一下�    function checkApiStatus() {
+      const key = getActiveApiKey();
+      const statusPill = document.getElementById('api-status-pill');
+      const statusText = document.getElementById('api-status-text');
+      
+      if (key && key !== "PASTE_YOUR_KEY_HERE" && key !== "MY_GEMINI_API_KEY") {
+        statusPill.className = "flex items-center space-x-1.5 bg-[#F3EDF7] px-2.5 py-1 rounded-full text-xs font-semibold border border-[#CAC4D0] text-[#6750A4]";
+        statusText.innerText = "Gemini AI Live";
+        currentState.isFallbackMode = false;
+      } else {
+        statusPill.className = "flex items-center space-x-1.5 bg-[#FDF8F6] px-2.5 py-1 rounded-full text-xs font-semibold border border-[#CAC4D0] text-[#7D5260]";
+        statusText.innerText = "Fallback Mode (Active)";
+        currentState.isFallbackMode = true;
+      }
+    }
+
+    // LEVEL SELECTION
+    function selectLevel(levelName) {
+      currentState.level = levelName;
+      currentState.screen = 'workspace';
+      
+      // Update UI elements
+      document.getElementById('screen-home').classList.add('hidden');
+      document.getElementById('screen-workspace').classList.remove('hidden');
+      document.getElementById('active-level-label').innerText = levelName;
+      
+      // Force API status check
+      checkApiStatus();
+
+      // Load or generate topic
+      loadInitialTopic();
+    }
+
+    function goBackToHome() {
+      currentState.level = null;
+      currentState.screen = 'home';
+      document.getElementById('screen-workspace').classList.add('hidden');
+      document.getElementById('screen-home').classList.remove('hidden');
+    }
+
+    function switchTab(tabName) {
+      currentState.tab = tabName;
+      
+      const vocabTab = document.getElementById('btn-tab-vocab');
+      const chatTab = document.getElementById('btn-tab-chat');
+      const vocabPanel = document.getElementById('tab-vocab-panel');
+      const chatPanel = document.getElementById('tab-chat-panel');
+      
+      if (tabName === 'vocab') {
+        vocabTab.className = "flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-[#EADDFF] text-[#21005D] border-r border-[#79747E] outline-none";
+        chatTab.className = "flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-transparent text-[#49454F] hover:bg-[#EADDFF]/20 outline-none";
+        vocabPanel.classList.remove('hidden');
+        chatPanel.classList.add('hidden');
+      } else {
+        chatTab.className = "flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-[#EADDFF] text-[#21005D] border-l border-[#79747E] outline-none";
+        vocabTab.className = "flex-1 py-2 px-3 text-xs font-bold transition-all flex items-center justify-center space-x-1.5 bg-transparent text-[#49454F] hover:bg-[#EADDFF]/20 outline-none";
+        vocabPanel.classList.add('hidden');
+        chatPanel.classList.remove('hidden');
+        
+        // Auto-scroll chat to bottom
+        setTimeout(scrollChatToBottom, 100);
+      }
+    }�m không ạ?"},
+            {hanzi: "开药", pinyin: "kāi yào", vietnamese: "Kê đơn thuốc", example_hanzi: "医生给我开了一点感冒药。", example_pinyin: "Yīshēng gěi wǒ kāi le yīdiǎn gǎnmàoyào.", example_vietnamese: "Bác sĩ kê cho tôi ít thuốc cảm."}
+          ],
+          sentences: [
+            {hanzi: "你哪里不舒服？发烧不发烧？", pinyin: "Nǐ nǎlǐ bù shūfu? Fāshāo bù fāshāo?", vietnamese: "Bạn không khỏe ở đâu? Có sốt không?"},
+            {hanzi: "我从昨天晚上开始咳嗽，全身没力气。", pinyin: "Wǒ cóng zuótiān wǎnshang kāishǐ késou, quánshēn méi lìqi.", vietnamese: "Tôi bắt đầu ho từ tối qua, toàn thân không có sức lực."},
+            {hanzi: "按时吃药，多喝热水，注意休息。", pinyin: "Ànshí chī yào, duō hē rèshuǐ, zhùyì xiūxi.", vietnamese: "Uống thuốc đúng giờ, uống nhiều nước ấm, chú ý nghỉ ngơi."}
+          ],
+          ai_role: "Bác sĩ đa khoa tận tâm tại bệnh viện lớn.",
+          chat_flow: {
+            initial: {
+              hanzi: "你好，请坐。哪里不舒服？发烧、咳嗽吗？发热有多久了？",
+              pinyin: "Nǐ hǎo, qǐng zuò. Nǎlǐ bù shūfu? Fāshāo, késou ma? Fārè yǒu duōjiǔ le?",
+              vietnamese: "Chào bạn, mời ngồi. Không khỏe ở đâu thế? Có sốt, ho gì không? Đã phát sốt bao lâu rồi?"
+            },
+            suggestions: [
+              "我有点头疼，发烧38度，还咳嗽。",
+              "我全身没力气，好像感冒了。"
+            ],
+            replies: [
+              {
+                keywords: ["头疼", "发烧", "咳嗽", "感冒", "力气"],
+                ai_reply_hanzi: "看来是流感。我给你开几天的药，一日三次，饭后吃。这几天多喝开水，少吃辛辣的，明白了吗？",
+                ai_reply_pinyin: "Kànlái shì liúgǎn. Wǒ gěi nǐ kāi jǐ tiān de yào, yī rì sān cì, fàn hòu chī. Zhè jǐ tiān duō hē kāishuǐ, shǎo chī xīnlà de, míngbai le ma?",
+                ai_reply_vietnamese: "Xem ra là cúm mùa rồi. Tôi kê cho bạn thuốc uống trong mấy ngày, ngày uống 3 lần sau ăn nhé. Mấy ngày này uống nhiều nước lọc, ít ăn đồ cay nóng, rõ chưa nào?",
+                suggestions: ["明白了，谢谢医生。", "需要打针吗？"]
+              }
+            ]
+          }
+        }
+      ]
+    };
+  </script>
+
+  <!-- APP LOGIC -->
+  <script>
+    // HARDCODED GEMINI API KEY PLACEHOLDER - Users paste their key here
+    const GEMINI_API_KEY = "PASTE_YOUR_KEY_HERE";
+    
+    // API CONFIGURATION
+    const MODEL_NAME = "gemini-2.0-flash";
+    
+    // STATE MANAGEMENT
+    let currentState = {
+      level: null,
+      screen: 'home', // 'home' or 'workspace'
+      tab: 'vocab', // 'vocab' or 'chat'
+      currentTopic: null, // holds active topic object
+      chatHistory: [], // chat messages format: {sender: 'ai'|'user', hanzi, pinyin, vietnamese, feedback}
+      isAiGenerating: false,
+      isTopicLoading: false,
+      isFallbackMode: false
+    };
+
+    // Initialize Page
+    window.addEventListener('DOMContentLoaded', () => {
+      checkApiStatus();
+    });
+
+    // Check if real API key is available (either hardcoded or supplied via Android Bridge)
+    function getActiveApiKey() {
+      let key = GEMINI_API_KEY;
+      
+      // Attempt to read from Android JS Interface if available
+      if (typeof AndroidInterface !== 'undefined' && AndroidInterface.getApiKey) {
+        try {
+          const androidKey = AndroidInterface.getApiKey();
+          if (androidKey && androidKey !== "MY_GEMINI_API_KEY" && androidKey !== "") {
+            key = androidKey;
+          }
+        } catch (e) {
+          console.error("Error reading key from AndroidInterface:", e);
+        }
+      }
+      return key;
+    }
+
+    function checkApiStatus() {
+      const key = getActiveApiKey();
+      const statusPill = document.getElementById('api-status-pill');
+      const statusText = document.getElementById('api-status-text');
+      
+      if (key && key !== "PASTE_YOUR_KEY_HERE" && key !== "MY_GEMINI_API_KEY") {
+        statusPill.className = "flex items-center space-x-1.5 bg-emerald-900/40 px-2.5 py-1 rounded-full text-xs font-medium border border-emerald-500/20";
+        statusText.innerText = "Gemini AI Live";
+        currentState.isFallbackMode = false;
+      } else {
+        statusPill.className = "flex items-center space-x-1.5 bg-amber-950/40 px-2.5 py-1 rounded-full text-xs font-medium border border-amber-500/20 text-amber-300";
+        statusText.innerText = "Fallback Mode (Active)";
+        currentState.isFallbackMode = true;
+      }
+    }
+
+    // LEVEL SELECTION
+    function selectLevel(levelName) {
+      currentState.level = levelName;
+      currentState.screen = 'workspace';
+      
+      // Update UI elements
+      document.getElementById('screen-home').classList.add('hidden');
+      document.getElementById('screen-workspace').classList.remove('hidden');
+      document.getElementById('active-level-label').innerText = levelName;
+      
+      // Force API status check
+      checkApiStatus();
+
+      // Load or generate topic
+      loadInitialTopic();
+    }
+
+    function goBackToHome() {
+      currentState.level = null;
+      currentState.screen = 'home';
+      document.getElementById('screen-workspace').classList.add('hidden');
+      document.getElementById('screen-home').classList.remove('hidden');
+    }
+
+    function switchTab(tabName) {
+      currentState.tab = tabName;
+      
+      const vocabTab = document.getElementById('btn-tab-vocab');
+      const chatTab = document.getElementById('btn-tab-chat');
+      const vocabPanel = document.getElementById('tab-vocab-panel');
+      const chatPanel = document.getElementById('tab-chat-panel');
+      
+      if (tabName === 'vocab') {
+        vocabTab.className = "py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 bg-white text-emerald-800 shadow-sm border border-slate-200/50";
+        chatTab.className = "py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 text-slate-600 hover:bg-slate-100";
+        vocabPanel.classList.remove('hidden');
+        chatPanel.classList.add('hidden');
+      } else {
+        chatTab.className = "py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 bg-white text-emerald-800 shadow-sm border border-slate-200/50";
+        vocabTab.className = "py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 text-slate-600 hover:bg-slate-100";
+        vocabPanel.classList.add('hidden');
+        chatPanel.classList.remove('hidden');
+        
+        // Auto-scroll chat to bottom
+        setTimeout(scrollChatToBottom, 100);
+      }
+    }
+
+    // LOADING AND API INTEGRATION
+    async function loadInitialTopic() {
+      // Pick a random topic from Fallback as baseline
+      const levelLessons = FALLBACK_DATA[currentState.level] || FALLBACK_DATA["Msutong Sơ cấp"];
+      const randomLocalLesson = levelLessons[Math.floor(Math.random() * levelLessons.length)];
+      
+      // Update UI with the initial fallback/placeholder first
+      renderTopicData(randomLocalLesson);
+      
+      // If we have a valid key, query Gemini for a completely dynamic new topic!
+      if (!currentState.isFallbackMode) {
+        generateNewTopic();
+      } else {
+        // Fallback initialized
+        setupConversationForTopic(randomLocalLesson);
+      }
+    }
+
+    async function generateNewTopic() {
+      const key = getActiveApiKey();
+      if (!key || key === "PASTE_YOUR_KEY_HERE" || key === "MY_GEMINI_API_KEY") {
+        // Fallback silent switch
+        useLocalFallbackTopic();
+        return;
+      }
+
+      showTopicLoading(true);
+
+      const systemPrompt = `You are a highly professional, native Chinese university lecturer specializing in Teaching Chinese as a Second Language (TCSL). Your goal is to generate infinite, accurate, contextual, and pedagogically sound learning contents matching specified levels: "Msutong Sơ cấp", "Msutong Trung cấp", "HSK 1-2", or "HSK 3-4".
+Crucial Instruction on Content Generation: Every single Chinese line or word generated MUST be accompanied by its Pinyin (with correct tone marks) and its accurate Vietnamese translation. The format must always display all three items seamlessly: [Chữ Hán - Pinyin - Dịch nghĩa tiếng Việt].
+
+Based on the selected level: "${currentState.level}", generate a randomly selected real-world conversational topic (e.g., shopping, ordering food, talking about hobbies, introducing oneself, looking for an apartment, etc.). Make sure it's creative and different.
+Return a clean JSON object ONLY. DO NOT return any Markdown tags or backticks (no \`\`\`json or \`\`\`).
+The structure must be exactly:
+{
+  "topic": "Vietnamese topic title with Chinese matching e.g. Gọi món ăn (点菜)",
+  "vocab": [
+    {"hanzi": "Chữ Hán", "pinyin": "Pinyin", "vietnamese": "Nghĩa tiếng Việt", "example_hanzi": "Câu ví dụ", "example_pinyin": "Pinyin câu ví dụ", "example_vietnamese": "Dịch ví dụ"}
+  ],
+  "sentences": [
+    {"hanzi": "Câu mẫu Hán", "pinyin": "Pinyin câu", "vietnamese": "Dịch nghĩa câu"}
+  ],
+  "ai_role": "Miêu tả vai của AI bằng tiếng Việt, ví dụ: Người phục vụ bàn ở nhà hàng Thượng Hải vui tính.",
+  "initial_ai_msg": {
+    "hanzi": "Câu chào mừng đầu tiên bằng chữ Hán của AI để bắt đầu hội thoại nhập vai",
+    "pinyin": "Pinyin câu chào mừng",
+    "vietnamese": "Dịch nghĩa tiếng Việt câu chào mừng"
+  }
+}`;
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${key}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: systemPrompt }] }],
+            generationConfig: {
+              responseMimeType: "application/json",
+              temperature: 0.95
+            }
+          })
+        });
+
+        if (!response.ok) throw new Error("API call failed");
+
+        const data = await response.json();
+        let textResult = data.candidates[0].content.parts[0].text;
+        
+        // Clean markdown backticks if any
+        if (textResult.includes("```")) {
+          textResult = textResult.replace(/```json/g, '').replace(/```/g, '').trim();
+        }
+
+        const parsedData = JSON.parse(textResult);
+        
+        // Formulate a clean lesson structure
+        const lesson = {
+          topic: parsedData.topic,
+          vocab: parsedData.vocab,
+          sentences: parsedData.sentences,
+          ai_role: parsedData.ai_role || "Bạn học Trung Quốc",
+          chat_flow: {
+            initial: parsedData.initial_ai_msg || {
+              hanzi: parsedData.sentences[0]?.hanzi || "你好！",
+              pinyin: parsedData.sentences[0]?.pinyin || "Nǐ hǎo!",
+              vietnamese: parsedData.sentences[0]?.vietnamese || "Chào bạn!"
+            }
+          }
+        };
+
+        renderTopicData(lesson);
+        setupConversationForTopic(lesson);
+        showTopicLoading(false);
+
+      } catch (err) {
+        console.error("Gemini Generation Error:", err);
+        // Silent automatic switch to fallback
+        useLocalFallbackTopic();
+      }
+    }
+
+    function useLocalFallbackTopic() {
+      const levelLessons = FALLBACK_DATA[currentState.level] || FALLBACK_DATA["Msutong Sơ cấp"];
+      // Pick a random local lesson
+      const randomLesson = levelLessons[Math.floor(Math.random() * levelLessons.length)];
+      renderTopicData(randomLesson);
+      setupConversationForTopic(randomLesson);
+      showTopicLoading(false);
+    }
+
+    function showTopicLoading(isLoading) {
+      currentState.isTopicLoading = isLoading;
+      const vocabPanel = document.getElementById('tab-vocab-panel');
+      const spinner = document.getElementById('workspace-loading');
+      
+      if (isLoading) {
+        vocabPanel.classList.add('hidden');
+        spinner.classList.remove('hidden');
+      } else {
+        vocabPanel.classList.remove('hidden');
+        spinner.classList.add('hidden');
+      }
+    }
+
+    // RENDERING TOPIC DATA
+    function renderTopicData(lesson) {
+      currentState.currentTopic = lesson;
+      
+      // Update Title
+      document.getElementById('vocab-topic-title').innerText = lesson.topic;
+      
+      // Build Vocab List
+      const vocabContainer = document.getElementById('vocab-list-container');
+      vocabContainer.innerHTML = '';
+      
+      lesson.vocab.forEach((item, index) => {
+        const itemHtml = `
+          <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div class="flex-grow">
+                <div class="flex items-baseline space-x-2.5">
+                  <span class="chinese-text text-2xl font-bold text-slate-900 tracking-wide">${item.hanzi}</span>
+                  <span class="text-sm font-semibold text-emerald-600">${item.pinyin}</span>
+                </div>
+                <div class="text-xs text-slate-500 font-semibold mt-1">Nghĩa: <span class="text-slate-800 font-bold">${item.vietnamese}</span></div>
+              </div>
+              <button onclick="speakText('${item.hanzi}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 active:bg-emerald-200 text-emerald-800 rounded-full flex items-center justify-center transition-all">
+                <span class="material-symbols-outlined text-base">volume_up</span>
+              </button>
+            </div>
+            
+            <!-- Example sentence divider -->
+            <div class="mt-3 pt-2.5 border-t border-slate-100 bg-slate-50/50 p-2.5 rounded-lg">
+              <div class="flex items-center justify-between">
+                <p class="chinese-text text-sm text-slate-800 font-semibold tracking-wide flex-grow">${item.example_hanzi}</p>
+                <button onclick="speakText('${item.example_hanzi}')" class="w-6 h-6 text-emerald-700 hover:bg-emerald-100 rounded-full flex items-center justify-center transition-all ml-1.5 flex-shrink-0">
+                  <span class="material-symbols-outlined text-sm">volume_up</span>
+                </button>
+              </div>
+              <p class="text-[11px] font-medium text-emerald-600 mt-0.5">${item.example_pinyin}</p>
+              <p class="text-[11px] text-slate-500 mt-0.5 font-medium">${item.example_vietnamese}</p>
+            </div>
+          </div>
+        `;
+        vocabContainer.insertAdjacentHTML('beforeend', itemHtml);
+      });
+
+      // Build Sentences List
+      const sentencesContainer = document.getElementById('sentence-list-container');
+      sentencesContainer.innerHTML = '';
+      
+      lesson.sentences.forEach((item, index) => {
+        const itemHtml = `
+          <div class="bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm flex items-start justify-between hover:border-emerald-200 transition-colors">
+            <div class="flex-grow pr-2">
+              <p class="chinese-text text-base font-bold text-slate-900 tracking-wide leading-relaxed">${item.hanzi}</p>
+              <p class="text-xs font-semibold text-emerald-600 mt-1">${item.pinyin}</p>
+              <p class="text-xs text-slate-600 font-medium mt-0.5">${item.vietnamese}</p>
+            </div>
+            <button onclick="speakText('${item.hanzi}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center transition-all flex-shrink-0">
+              <span class="material-symbols-outlined text-base">volume_up</span>
+            </button>
+          </div>
+        `;
+        sentencesContainer.insertAdjacentHTML('beforeend', itemHtml);
+      });
+    }
+
+    // CONVERSATION ENGINE (CHAT)
+    function setupConversationForTopic(lesson) {
+      // Set role description
+      document.getElementById('chat-role-description').innerText = lesson.ai_role || "Bạn học cùng lớp ôn luyện hội thoại.";
+      
+      // Clear history
+      currentState.chatHistory = [];
+      
+      // Load initial message
+      const initMsg = lesson.chat_flow.initial;
+      currentState.chatHistory.push({
+        sender: 'ai',
+        hanzi: initMsg.hanzi,
+        pinyin: initMsg.pinyin,
+        vietnamese: initMsg.vietnamese,
+        feedback: ''
+      });
+      
+      renderChatMessages();
+      renderChatSuggestions(lesson.chat_flow.suggestions || []);
+    }
+
+    function renderChatMessages() {
+      const chatContainer = document.getElementById('chat-messages-container');
+      chatContainer.innerHTML = '';
+      
+      currentState.chatHistory.forEach((msg, idx) => {
+        if (msg.sender === 'ai') {
+          // AI message bubble with pronunciation and optional feedback
+          let feedbackHtml = '';
+          if (msg.feedback && msg.feedback.trim() !== '') {
+            feedbackHtml = `
+              <div class="mt-2.5 p-2 bg-rose-50 text-rose-800 text-[11px] font-medium rounded-lg border border-rose-100 flex items-start space-x-1.5">
+                <span class="material-symbols-outlined text-sm text-rose-600 flex-shrink-0 mt-0.5">feedback</span>
+                <div>
+                  <span class="font-bold">AI Nhận Xét:</span> ${msg.feedback}
+                </div>
+              </div>
+            `;
+          }
+          
+          const bubble = `
+            <div class="flex flex-col items-start space-y-1">
+              <div class="max-w-[85%] bg-slate-100 text-slate-800 rounded-2xl px-4 py-3 rounded-tl-sm relative shadow-sm">
+                <div class="flex items-start justify-between space-x-2">
+                  <div class="flex-grow">
+                    <p class="chinese-text text-[15px] font-extrabold text-slate-900 tracking-wide leading-relaxed">${msg.hanzi}</p>
+                    <p class="text-[11px] font-semibold text-emerald-600 mt-1">${msg.pinyin}</p>
+                    <p class="text-[11px] text-slate-500 font-medium mt-0.5 border-t border-slate-200/50 pt-1">${msg.vietnamese}</p>
+                  </div>
+                  <button onclick="speakText('${msg.hanzi}')" class="w-6 h-6 text-slate-500 hover:text-emerald-700 hover:bg-slate-200 rounded-full flex items-center justify-center flex-shrink-0 transition-all">
+                    <span class="material-symbols-outlined text-sm">volume_up</span>
+                  </button>
+                </div>
+                ${feedbackHtml}
+              </div>
+            </div>
+          `;
+          chatContainer.insertAdjacentHTML('beforeend', bubble);
+        } else {
+          // User message bubble
+          const bubble = `
+            <div class="flex flex-col items-end space-y-1">
+              <div class="max-w-[85%] bg-emerald-700 text-white rounded-2xl px-4 py-2.5 rounded-tr-sm shadow-sm">
+                <p class="text-sm font-semibold tracking-wide">${msg.hanzi}</p>
+              </div>
+            </div>
+          `;
+          chatContainer.insertAdjacentHTML('beforeend', bubble);
+        }
+      });
+      
+      scrollChatToBottom();
+    }
+
+    function renderChatSuggestions(suggestions) {
+      const container = document.getElementById('chat-suggestions-list');
+      container.innerHTML = '';
+      
+      if (suggestions && suggestions.length > 0) {
+        document.getElementById('chat-suggestions-container').classList.remove('hidden');
+        suggestions.forEach(text => {
+          const btn = `
+            <button onclick="useSuggestion('${text.replace(/'/g, "\\'")}')" class="text-[11px] bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 text-slate-600 font-bold px-3 py-1.5 rounded-full transition-all border border-slate-200/60 shadow-sm max-w-[200px] truncate">
+              ${text}
+            </button>
+          `;
+          container.insertAdjacentHTML('beforeend', btn);
+        });
+      } else {
+        document.getElementById('chat-suggestions-container').classList.add('hidden');
+      }
+    }
+
+    function useSuggestion(text) {
+      document.getElementById('chat-input-field').value = text;
+      document.getElementById('chat-input-field').focus();
+    }
+
+    function scrollChatToBottom() {
+      const chatContainer = document.getElementById('chat-messages-container');
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    async function sendChatMessage() {
+      const inputEl = document.getElementById('chat-input-field');
+      const userText = inputEl.value.trim();
+      
+      if (!userText || currentState.isAiGenerating) return;
+      
+      inputEl.value = '';
+      
+      // Add user message to history
+      currentState.chatHistory.push({
+        sender: 'user',
+        hanzi: userText,
+        pinyin: '',
+        vietnamese: '',
+        feedback: ''
+      });
+      
+      renderChatMessages();
+      
+      // Trigger AI typing reply
+      await generateAiChatReply(userText);
+    }
+
+    async function generateAiChatReply(userText) {
+      currentState.isAiGenerating = true;
+      
+      // Add beautiful loading state in chat
+      const chatContainer = document.getElementById('chat-messages-container');
+      const loadingBubbleId = 'ai-typing-indicator';
+      const loadingBubble = `
+        <div id="${loadingBubbleId}" class="flex items-center space-x-2 text-slate-400 text-xs font-bold py-2 bg-slate-50 px-3 rounded-full self-start">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-bounce" style="animation-delay: 0ms"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-bounce" style="animation-delay: 150ms"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-bounce" style="animation-delay: 300ms"></span>
+          <span>AI đang phân tích & trả lời...</span>
+        </div>
+      `;
+      chatContainer.insertAdjacentHTML('beforeend', loadingBubble);
+      scrollChatToBottom();
+
+      const key = getActiveApiKey();
+      
+      // Check if fallback mode is active
+      if (currentState.isFallbackMode || !key || key === "PASTE_YOUR_KEY_HERE" || key === "MY_GEMINI_API_KEY") {
+        setTimeout(() => {
+          removeTypingIndicator();
+          handleLocalFallbackReply(userText);
+        }, 1200);
+        return;
+      }
+
+      // Prepare conversation history context
+      const chatContext = currentState.chatHistory.map(msg => {
+        return `${msg.sender === 'ai' ? 'AI Role' : 'User'}: ${msg.hanzi}`;
+      }).join('\n');
+
+      const systemPrompt = `You are playing the role: "${currentState.currentTopic.ai_role || 'Bạn học'}" in a simulated real-life spoken Chinese practice session.
+The level is "${currentState.level}" and the topic is "${currentState.currentTopic.topic}".
+Analyze the user's latest Chinese response, check for glaring grammatical/pinyin/word errors, provide feedback, and keep the roleplay natural.
+
+Your response MUST be a clean JSON object ONLY (without any backticks or markdown formatting).
+JSON structure:
+{
+  "feedback": "Nhận xét ngắn gọn 1-2 câu bằng tiếng Việt chỉ ra lỗi sai ngữ pháp hoặc phát âm nếu có, nếu đúng thì ghi rỗng hoặc khích lệ người học.",
+  "ai_reply_hanzi": "Câu phản hồi tiếp theo bằng tiếng Trung tự nhiên phù hợp với vai diễn của bạn",
+  "ai_reply_pinyin": "Phiên âm Pinyin có dấu thanh điệu đầy đủ của câu phản hồi",
+  "ai_reply_vietnamese": "Dịch nghĩa tiếng Việt đầy đủ và mượt mà của câu phản hồi",
+  "next_suggestions": [
+    "Câu gợi ý ngắn 1 bằng chữ Hán để người dùng dễ chọn trả lời",
+    "Câu gợi ý ngắn 2 bằng chữ Hán để người dùng dễ chọn trả lời"
+  ]
+}
+
+Conversation context so far:
+${chatContext}
+
+User latest message: ${userText}`;
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${key}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: systemPrompt }] }],
+            generationConfig: {
+              responseMimeType: "application/json",
+              temperature: 0.8
+            }
+          })
+        });
+
+        removeTypingIndicator();
+
+        if (!response.ok) throw new Error("Chat call failed");
+
+        const data = await response.json();
+        let textResult = data.candidates[0].content.parts[0].text;
+        
+        if (textResult.includes("```")) {
+          textResult = textResult.replace(/```json/g, '').replace(/```/g, '').trim();
+        }
+
+        const parsed = JSON.parse(textResult);
+
+        currentState.chatHistory.push({
+          sender: 'ai',
+          hanzi: parsed.ai_reply_hanzi,
+          pinyin: parsed.ai_reply_pinyin,
+          vietnamese: parsed.ai_reply_vietnamese,
+          feedback: parsed.feedback
+        });
+
+        renderChatMessages();
+        renderChatSuggestions(parsed.next_suggestions || []);
+
+      } catch (err) {
+        console.error("Chat API Error:", err);
+        // Silent fallback in-chat
+        handleLocalFallbackReply(userText);
+      } finally {
+        currentState.isAiGenerating = false;
+      }
+    }
+
+    function removeTypingIndicator() {
+      const indicator = document.getElementById('ai-typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    function handleLocalFallbackReply(userText) {
+      removeTypingIndicator();
+      currentState.isAiGenerating = false;
+
+      // Scan local chat_flow replies in currentTopic
+      const chatFlow = currentState.currentTopic.chat_flow;
+      let matchedReply = null;
+
+      if (chatFlow && chatFlow.replies) {
+        // Try to match keywords
+        for (const reply of chatFlow.replies) {
+          const match = reply.keywords.some(kw => userText.toLowerCase().includes(kw.toLowerCase()));
+          if (match) {
+            matchedReply = reply;
+            break;
+          }
+        }
+      }
+
+      if (matchedReply) {
+        currentState.chatHistory.push({
+          sender: 'ai',
+          hanzi: matchedReply.ai_reply_hanzi,
+          pinyin: matchedReply.ai_reply_pinyin,
+          vietnamese: matchedReply.ai_reply_vietnamese,
+          feedback: "Đúng rồi! Bạn trả lời rất tốt. Cố gắng phát huy nhé."
+        });
+        renderChatMessages();
+        renderChatSuggestions(matchedReply.suggestions || []);
+      } else {
+        // General friendly generic reply
+        currentState.chatHistory.push({
+          sender: 'ai',
+          hanzi: "我很开心听到你这么说！你能跟我多聊聊关于这个主意的事儿吗？",
+          pinyin: "Wǒ hěn kāixīn tīngdào nǐ zhème shuō! Nǐ néng gēn wǒ duō liáoliao guānyú zhège zhǔyi de shìr ma?",
+          vietnamese: "Tôi rất vui khi nghe bạn nói vậy! Bạn có muốn nói thêm với tôi về chuyện này không?",
+          feedback: "Bạn diễn đạt khá ổn! Hãy gõ câu trả lời theo gợi ý phía dưới để rèn luyện phản xạ."
+        });
+        renderChatMessages();
+        renderChatSuggestions([
+          "好啊，我们聊聊这个吧。",
+          "对不起，我不太会表达。"
+        ]);
+      }
+    }
+
+    function resetConversation() {
+      if (confirm("Bạn có chắc chắn muốn bắt đầu lại cuộc hội thoại không?")) {
+        setupConversationForTopic(currentState.currentTopic);
+      }
+    }
+
+    // TTS SPEECH SYNTHESIS
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop current speech
+        
+        // Clean any potential HTML or bracket markup
+        const cleanText = text.replace(/\[.*?\]/g, '').trim();
+        
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'zh-CN'; // Set Mandarin Chinese
+        
+        // Attempt to find a native Chinese voice
+        const voices = window.speechSynthesis.getVoices();
+        const zhVoice = voices.find(v => v.lang.startsWith('zh-CN') || v.lang.startsWith('zh-'));
+        if (zhVoice) {
+          utterance.voice = zhVoice;
+        }
+        
+        // Adjust speed slightly to make it easier for learners
+        utterance.rate = 0.85; 
+        
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Thiết bị của bạn không hỗ trợ công cụ đọc phát âm (TTS).");
+      }
+    }
+  </script>
+</body>
+</html>

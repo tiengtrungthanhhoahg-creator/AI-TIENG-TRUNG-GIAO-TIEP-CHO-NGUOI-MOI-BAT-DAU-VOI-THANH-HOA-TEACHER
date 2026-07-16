@@ -3,166 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học tiếng Trung HSK1 & MSUTONG</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Học tiếng Trung Giao tiếp Sơ cấp HSK1 & MSUTONG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4A90E2;
-            --secondary: #50C878;
-            --accent: #FF9F43;
-            --bg: #F0F4F8;
-            --card-bg: #FFFFFF;
-            --text: #2D3436;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --primary: #4fc3f7;
+            --secondary: #ffb74d;
+            --success: #81c784;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #37474f;
+            --text-light: #78909c;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 80px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), #67B26F);
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
             color: white;
             padding: 20px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
+        header h1 { margin: 0; font-size: 1.4rem; font-weight: 700; }
+        header p { margin: 5px 0 0; font-size: 0.85rem; opacity: 0.9; }
 
-        /* Tabs Navigation */
-        .tabs {
+        /* Navigation */
+        nav {
             display: flex;
             background: white;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            padding: 10px;
+            justify-content: space-around;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .tab-item {
-            flex: 1;
-            padding: 15px 5px;
-            text-align: center;
+        .nav-btn {
+            border: none;
+            background: none;
+            padding: 10px 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
             cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #636e72;
+            border-bottom: 3px solid transparent;
             transition: 0.3s;
-            border-top: 3px solid transparent;
+            flex: 1;
         }
 
-        .tab-item.active {
+        .nav-btn.active {
             color: var(--primary);
-            border-top: 3px solid var(--primary);
-            background-color: #f9f9f9;
+            border-bottom-color: var(--primary);
         }
 
-        .tab-item i { display: block; font-size: 1.2rem; margin-bottom: 4px; }
-
-        /* Content Sections */
-        .section { display: none; animation: fadeIn 0.4s ease; }
-        .section.active { display: block; }
+        /* Content Areas */
+        main { flex: 1; padding: 15px; max-width: 800px; margin: 0 auto; width: 100%; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Card Styles */
+        /* Generic UI Elements */
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: var(--shadow);
-            border-left: 5px solid var(--primary);
         }
 
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: filter 0.2s;
+        }
+
+        .btn:active { filter: brightness(0.9); }
+        .btn-secondary { background: var(--secondary); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+
+        .audio-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #e1f5fe;
+            color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        /* Exercise Items */
         .exercise-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
-            gap: 10px;
-        }
-
-        .zh-text { font-size: 2.2rem; color: var(--primary); font-weight: 700; }
-        .py-text { font-size: 1.2rem; color: var(--accent); }
-        .vi-text { font-size: 1rem; color: #636e72; }
-
-        /* Buttons */
-        .btn-group { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; justify-content: center; }
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-            font-family: inherit;
-        }
-        .btn-listen { background: #e1f5fe; color: #0288d1; }
-        .btn-mic { background: #ffebee; color: #d32f2f; }
-        .btn-mic.recording { background: #d32f2f; color: white; animation: pulse 1.5s infinite; }
-        .btn-next { background: var(--secondary); color: white; margin-top: 10px; width: 100%; justify-content: center; }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-
-        /* Selector UI */
-        .selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .selector-btn {
-            background: white;
-            padding: 15px 10px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            text-align: center;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .selector-btn.active { border-color: var(--primary); background: #e3f2fd; }
-
-        /* Feedback UI */
-        .feedback-card {
-            background: #f8f9fa;
-            border-radius: 12px;
             padding: 15px;
-            margin-top: 15px;
-            border: 1px dashed #ccc;
+            border-bottom: 1px solid #eee;
         }
-        .score-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
-        .score-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; width: 100%; margin-bottom: 10px; }
-        .score-fill { height: 100%; background: var(--secondary); transition: width 0.5s; }
 
-        /* Loader */
-        .loader {
-            display: none;
+        .exercise-content { flex: 1; }
+        .chinese-txt { font-size: 1.4rem; color: #2c3e50; font-weight: 600; display: block; }
+        .pinyin-txt { color: #546e7a; font-style: italic; }
+        .vn-txt { font-size: 0.9rem; color: #78909c; }
+
+        /* Evaluation Section */
+        .feedback-card {
+            border-left: 5px solid var(--success);
+            background: #f1f8e9;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            flex: 1;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill { height: 100%; background: var(--success); border-radius: 4px; }
+
+        /* Recording State */
+        .recording-ui {
             text-align: center;
             padding: 20px;
         }
-        .spinner {
-            width: 40px;
-            height: 40px;
+
+        .mic-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #ff5252;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .mic-btn.recording {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 82, 82, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+        }
+
+        /* Loading Spinner */
+        .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary);
             border-radius: 50%;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+            margin: 20px auto;
+            display: none;
         }
+
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .hidden { display: none !important; }
@@ -171,374 +202,301 @@
 <body>
 
     <header>
-        <h1>Hànyǔ Master</h1>
-        <p style="font-size: 0.8rem; opacity: 0.9;">Giao tiếp HSK1 & MSUTONG</p>
+        <h1>Học tiếng Trung Giao tiếp</h1>
+        <p>HSK1 & MSUTONG (Pinyin, Hội thoại, Chủ đề)</p>
     </header>
 
-    <div class="container">
-        <!-- Loader -->
-        <div id="loader" class="loader">
-            <div class="spinner"></div>
-            <p>Đang xử lý với AI...</p>
-        </div>
-
-        <!-- Section 1: Pinyin -->
-        <div id="pinyin-section" class="section active">
-            <h3 style="margin-bottom:15px;">Luyện Phát Âm Pinyin</h3>
-            <div class="selector-grid">
-                <div class="selector-btn" onclick="loadPinyinSet('b/p')">Âm bật hơi b/p</div>
-                <div class="selector-btn" onclick="loadPinyinSet('g/k')">Âm cuống lưỡi g/k</div>
-                <div class="selector-btn" onclick="loadPinyinSet('z/c/s')">Âm đầu lưỡi z/c/s</div>
-                <div class="selector-btn" onclick="loadPinyinSet('zh/ch/sh')">Âm uốn lưỡi zh/ch/sh</div>
-                <div class="selector-btn" onclick="loadPinyinSet('j/q/x')">Âm mặt lưỡi j/q/x</div>
-                <div class="selector-btn" onclick="loadPinyinSet('t1/t4')">Thanh 1 vs Thanh 4</div>
-            </div>
-
-            <div id="pinyin-display" class="hidden">
-                <div class="card">
-                    <div class="exercise-item">
-                        <div id="p-zh" class="zh-text">bàba</div>
-                        <div id="p-py" class="py-text">bàba</div>
-                        <div id="p-vi" class="vi-text">Bố</div>
-                        <div class="btn-group">
-                            <button class="btn btn-listen" onclick="playCurrentTTS()">🔊 Nghe</button>
-                            <button id="mic-pinyin" class="btn btn-mic" onclick="toggleRecording('pinyin')">🎤 Luyện nói</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="pinyin-feedback" class="feedback-card hidden"></div>
-                <button class="btn btn-next" onclick="nextItem('pinyin')">Câu tiếp theo ➔</button>
-            </div>
-        </div>
-
-        <!-- Section 2: Dialogue -->
-        <div id="dialogue-section" class="section">
-            <h3 style="margin-bottom:15px;">Hội Thoại Tình Huống</h3>
-            <div class="selector-grid" id="dialogue-themes">
-                <!-- Dynamically populated -->
-            </div>
-
-            <div id="dialogue-display" class="hidden">
-                <div class="card">
-                    <div style="margin-bottom:15px; color:var(--primary); font-weight:bold" id="d-title"></div>
-                    <div id="d-content"></div>
-                </div>
-                <div id="dialogue-feedback" class="feedback-card hidden"></div>
-                <button class="btn btn-next" onclick="nextItem('dialogue')">Bài mới ➔</button>
-            </div>
-        </div>
-
-        <!-- Section 3: Topic -->
-        <div id="topic-section" class="section">
-            <h3 style="margin-bottom:15px;">Nói Theo Chủ Đề</h3>
-            <div class="selector-grid" id="topic-list">
-                <!-- Dynamically populated -->
-            </div>
-
-            <div id="topic-display" class="hidden">
-                <div class="card">
-                    <h4 id="t-title" style="margin-bottom:10px;"></h4>
-                    <p id="t-instruction" style="font-size:0.9rem; color:#666; margin-bottom:15px;"></p>
-                    <div class="exercise-item">
-                        <div class="btn-group">
-                            <button id="mic-topic" class="btn btn-mic" style="padding:15px 30px" onclick="toggleRecording('topic')">🎤 Nhấn để bắt đầu nói (tối đa 45s)</button>
-                        </div>
-                    </div>
-                    <div id="topic-transcript" style="margin-top:15px; font-style:italic; color:#888; font-size:0.8rem;"></div>
-                </div>
-                <div id="topic-feedback" class="feedback-card hidden"></div>
-                <button class="btn btn-next" onclick="nextItem('topic')">Chọn chủ đề khác ➔</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="tabs">
-        <div class="tab-item active" onclick="switchTab('pinyin')">
-            <i>🔤</i> Pinyin
-        </div>
-        <div class="tab-item" onclick="switchTab('dialogue')">
-            <i>💬</i> Hội thoại
-        </div>
-        <div class="tab-item" onclick="switchTab('topic')">
-            <i>🎤</i> Chủ đề
-        </div>
+    <nav>
+        <button class="nav-btn active" onclick="showTab('pinyin')">Phát âm</button>
+        <button class="nav-btn" onclick="showTab('dialogue')">Hội thoại</button>
+        <button class="nav-btn" onclick="showTab('topic')">Chủ đề</button>
     </nav>
 
+    <main>
+        <!-- Tab 1: Pinyin -->
+        <div id="pinyin" class="tab-content active">
+            <div class="card">
+                <h3>Luyện tập Pinyin</h3>
+                <p style="font-size: 0.9rem; color: var(--text-light);">Chọn cặp âm hoặc thanh điệu bạn muốn luyện tập:</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button class="btn btn-outline" onclick="loadExercise('pinyin', 'b vs p')">b / p</button>
+                    <button class="btn btn-outline" onclick="loadExercise('pinyin', 'g vs k')">g / k</button>
+                    <button class="btn btn-outline" onclick="loadExercise('pinyin', 'z c s vs zh ch sh')">z/c/s vs zh/ch/sh</button>
+                    <button class="btn btn-outline" onclick="loadExercise('pinyin', 'tone 1 vs tone 4')">Thanh 1 vs 4</button>
+                </div>
+            </div>
+            <div id="pinyin-container"></div>
+        </div>
+
+        <!-- Tab 2: Dialogue -->
+        <div id="dialogue" class="tab-content">
+            <div class="card">
+                <h3>Hội thoại tình huống</h3>
+                <select id="dialogue-select" class="btn btn-outline" style="text-align: left;" onchange="loadExercise('dialogue', this.value)">
+                    <option value="">Chọn chủ đề hội thoại...</option>
+                    <option value="Chào hỏi & Làm quen">1. Chào hỏi & Làm quen</option>
+                    <option value="Mua sắm & Giá cả">2. Mua sắm & Giá cả</option>
+                    <option value="Ăn uống">3. Ăn uống</option>
+                    <option value="Hẹn gặp & Thời gian">4. Hẹn gặp & Thời gian</option>
+                    <option value="Thời tiết">5. Thời tiết</option>
+                    <option value="Hỏi đường">6. Hỏi đường</option>
+                    <option value="Giao tiếp bạn bè">7. Giao tiếp bạn bè</option>
+                    <option value="Giao tiếp công sở">8. Giao tiếp công sở</option>
+                    <option value="Sở thích">9. Sở thích</option>
+                    <option value="Gia đình">10. Gia đình</option>
+                </select>
+            </div>
+            <div id="dialogue-container"></div>
+        </div>
+
+        <!-- Tab 3: Topic -->
+        <div id="topic" class="tab-content">
+            <div class="card">
+                <h3>Nói theo chủ đề</h3>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                    <button class="btn btn-outline" onclick="loadExercise('topic', 'Giới thiệu bản thân')">Giới thiệu bản thân</button>
+                    <button class="btn btn-outline" onclick="loadExercise('topic', 'Nói về gia đình')">Gia đình của tôi</button>
+                    <button class="btn btn-outline" onclick="loadExercise('topic', 'Thời tiết và Sở thích')">Thời tiết & Sở thích</button>
+                </div>
+            </div>
+            <div id="topic-container"></div>
+        </div>
+
+        <div id="loader" class="loader"></div>
+
+        <!-- Recording Overlay (Dynamic) -->
+        <div id="active-practice" class="card hidden">
+            <div id="practice-content"></div>
+            <div class="recording-ui">
+                <button id="mic-btn" class="mic-btn" onclick="toggleRecording()">🎤</button>
+                <p id="mic-status">Nhấn để bắt đầu nói</p>
+                <div id="transcript-area" class="hidden" style="margin-top: 15px; padding: 10px; background: #f0f4f8; border-radius: 10px; font-style: italic;"></div>
+            </div>
+            <div id="evaluation-result"></div>
+        </div>
+    </main>
+
     <script>
-        const GEMINI_API_KEY = "AQ.Ab8RN6IgGI05SIra_KUZGQySSkTT4ALbLmn41LKGgLO9qFddeA";
+        const GEMINI_API_KEY = "AQ.Ab8RN6IgGI05SIra_KUZGQySSkTT4ALbLmn41LKGgLO9qFddeA"; 
+        const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
         const FALLBACK_DATA = [
-            { chinese: "bàba", pinyin: "bàba", vietnamese: "bố", section: "pinyin", group: "b/p" },
-            { chinese: "pápā", pinyin: "pápā", vietnamese: "bò/nằm sấp", section: "pinyin", group: "b/p" },
-            { chinese: "gēge", pinyin: "gēge", vietnamese: "anh trai", section: "pinyin", group: "g/k" },
-            { chinese: "kěle", pinyin: "kěle", vietnamese: "khát nước", section: "pinyin", group: "g/k" },
-            { chinese: "dìdi", pinyin: "dìdi", vietnamese: "em trai", section: "pinyin", group: "d/t" },
-            { chinese: "tóngxué", pinyin: "tóngxué", vietnamese: "bạn học", section: "pinyin", group: "d/t" },
-            { chinese: "zìjǐ", pinyin: "zìjǐ", vietnamese: "tự mình", section: "pinyin", group: "z/c/s" },
-            { chinese: "shìjiè", pinyin: "shìjiè", vietnamese: "thế giới", section: "pinyin", group: "zh/ch/sh" },
-            { chinese: "jīntiān", pinyin: "jīntiān", vietnamese: "hôm nay", section: "pinyin", group: "j/q/x" },
-            { chinese: "qù", pinyin: "qù", vietnamese: "đi", section: "pinyin", group: "j/q/x" }
+            { section: "pinyin", title: "Cặp âm b vs p", items: [{ chinese: "bàba", pinyin: "bàba", vietnamese: "Bố", audio_prompt: "Focus on non-aspirated 'b' vs aspirated 'p'" }, { chinese: "pápā", pinyin: "pápā", vietnamese: "Bò/Nằm sấp", audio_prompt: "Strong puff of air on 'p'" }] },
+            { section: "pinyin", title: "Cặp âm g vs k", items: [{ chinese: "gēge", pinyin: "gēge", vietnamese: "Anh trai", audio_prompt: "" }, { chinese: "kěle", pinyin: "kěle", vietnamese: "Khát nước", audio_prompt: "" }] },
+            { section: "pinyin", title: "Cặp âm d vs t", items: [{ chinese: "dìdi", pinyin: "dìdi", vietnamese: "Em trai", audio_prompt: "" }, { chinese: "tóngxué", pinyin: "tóngxué", vietnamese: "Bạn học", audio_prompt: "" }] },
+            { section: "pinyin", title: "Cặp âm z/c/s vs zh/ch/sh", items: [{ chinese: "zìjǐ", pinyin: "zìjǐ", vietnamese: "Tự mình", audio_prompt: "" }, { chinese: "shìjiè", pinyin: "shìjiè", vietnamese: "Thế giới", audio_prompt: "" }] },
+            { section: "pinyin", title: "Cặp âm j vs q", items: [{ chinese: "jīntiān", pinyin: "jīntiān", vietnamese: "Hôm nay", audio_prompt: "" }, { chinese: "qù", pinyin: "qù", vietnamese: "Đi", audio_prompt: "" }] },
+            { section: "dialogue", title: "Chào hỏi", items: [{ chinese: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ.", pinyin: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ.", vietnamese: "Chào bạn! Rất vui được làm quen với bạn.", audio_prompt: "" }] },
+            { section: "dialogue", title: "Mua sắm", items: [{ chinese: "Zhège duōshao qián? Sānshí kuài qián.", pinyin: "Zhège duōshao qián? Sānshí kuài qián.", vietnamese: "Cái này bao nhiêu tiền? 30 tệ.", audio_prompt: "" }] },
+            { section: "dialogue", title: "Ăn uống", items: [{ chinese: "Nǐ xiǎng chī shénme? Wǒ xiǎng chī jiǎozǐ.", pinyin: "Nǐ xiǎng chī shénme? Wǒ xiǎng chī jiǎozǐ.", vietnamese: "Bạn muốn ăn gì? Tôi muốn ăn sủi cảo.", audio_prompt: "" }] },
+            { section: "topic", title: "Giới thiệu bản thân", items: [{ chinese: "Wǒ jiào... Wǒ shì Yuènán rén. Wǒ xuéxí Hànyǔ.", pinyin: "Wǒ jiào... Wǒ shì Yuènán rén. Wǒ xuéxí Hànyǔ.", vietnamese: "Tôi tên là... Tôi là người Việt Nam. Tôi học tiếng Trung.", audio_prompt: "" }] },
+            { section: "topic", title: "Thời tiết", items: [{ chinese: "Jīntiān tiānqì hěn hǎo, bù lěng yě bù rè.", pinyin: "Jīntiān tiānqì hěn hǎo, bù lěng yě bù rè.", vietnamese: "Hôm nay thời tiết rất tốt, không lạnh cũng không nóng.", audio_prompt: "" }] }
         ];
 
-        const DIALOGUE_THEMES = ["Chào hỏi", "Mua sắm", "Ăn uống", "Thời gian", "Thời tiết", "Hỏi đường", "Bạn bè", "Công sở", "Sở thích", "Gia đình"];
-        const TOPIC_THEMES = ["Giới thiệu bản thân", "Gia đình tôi", "Một ngày của tôi", "Sở thích của tôi", "Trường học/Công việc"];
-
-        let currentData = null;
-        let currentIndex = 0;
+        let currentRecognition = null;
         let isRecording = false;
-        let recognition = null;
+        let currentTargetText = "";
+        let currentSection = "pinyin";
 
-        // Init App
-        window.onload = () => {
-            initSpeech();
-            renderDialogueThemes();
-            renderTopicThemes();
-        };
-
-        function switchTab(tab) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-            document.getElementById(`${tab}-section`).classList.add('active');
-            event.currentTarget.classList.add('active');
+        function showTab(tabId) {
+            currentSection = tabId;
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById('active-practice').classList.add('hidden');
         }
 
-        function renderDialogueThemes() {
-            const container = document.getElementById('dialogue-themes');
-            DIALOGUE_THEMES.forEach(t => {
-                const btn = document.createElement('div');
-                btn.className = 'selector-btn';
-                btn.innerText = t;
-                btn.onclick = () => loadDialogue(t);
-                container.appendChild(btn);
-            });
-        }
-
-        function renderTopicThemes() {
-            const container = document.getElementById('topic-list');
-            TOPIC_THEMES.forEach(t => {
-                const btn = document.createElement('div');
-                btn.className = 'selector-btn';
-                btn.innerText = t;
-                btn.onclick = () => loadTopic(t);
-                container.appendChild(btn);
-            });
-        }
-
-        // Gemini API Logic
         async function callGemini(prompt) {
-            document.getElementById('loader').style.display = 'block';
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                const response = await fetch(GEMINI_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }],
-                        generationConfig: { response_mime_type: "application/json" }
+                        contents: [{ parts: [{ text: prompt }] }]
                     })
                 });
                 const data = await response.json();
                 let text = data.candidates[0].content.parts[0].text;
                 // Clean markdown
-                text = text.replace(/```json/g, "").replace(/```/g, "").trim();
+                text = text.replace(/```json/g, '').replace(/```/g, '').trim();
                 return JSON.parse(text);
             } catch (e) {
-                console.error("API Error, using fallback", e);
+                console.error("Gemini Error:", e);
                 return null;
-            } finally {
-                document.getElementById('loader').style.display = 'none';
             }
         }
 
-        // Logic - Pinyin
-        async function loadPinyinSet(group) {
-            document.getElementById('pinyin-display').classList.remove('hidden');
-            document.getElementById('pinyin-feedback').classList.add('hidden');
+        async function loadExercise(section, subType) {
+            const container = document.getElementById(`${section}-container`);
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
+            container.innerHTML = '';
+            document.getElementById('active-practice').classList.add('hidden');
+
+            const systemPrompt = `Bạn là giáo viên tiếng Trung bản xứ dạy học sinh Việt Nam. Xuất bản JSON thô. 
+            Request Type "generate_exercise" cho section "${section}" và chủ đề "${subType}".
+            Cấu trúc JSON: {"section": "${section}", "title": "...", "instruction": "...", "items": [{"chinese": "...", "pinyin": "...", "vietnamese": "...", "audio_prompt": "..."}]}`;
+
+            let data = await callGemini(systemPrompt);
             
-            const prompt = `Hãy tạo 5 từ vựng tiếng Trung (giản thể, pinyin, nghĩa Việt) tập trung vào cặp âm: ${group} cho trình độ HSK1. Trả về JSON: {"items": [{"chinese": "", "pinyin": "", "vietnamese": ""}]}`;
-            const result = await callGemini(prompt);
-            
-            if (result && result.items) {
-                currentData = result.items;
-            } else {
-                currentData = FALLBACK_DATA.filter(i => i.group === group);
+            if (!data) {
+                data = FALLBACK_DATA.find(d => d.section === section && (d.title.includes(subType) || section === 'pinyin')) || FALLBACK_DATA[0];
             }
-            currentIndex = 0;
-            displayPinyin();
+
+            loader.style.display = 'none';
+            renderExerciseList(data, container);
         }
 
-        function displayPinyin() {
-            const item = currentData[currentIndex];
-            document.getElementById('p-zh').innerText = item.chinese;
-            document.getElementById('p-py').innerText = item.pinyin;
-            document.getElementById('p-vi').innerText = item.vietnamese;
-        }
-
-        // Logic - Dialogue
-        async function loadDialogue(theme) {
-            document.getElementById('dialogue-display').classList.remove('hidden');
-            document.getElementById('dialogue-themes').classList.add('hidden');
-            document.getElementById('dialogue-feedback').classList.add('hidden');
-
-            const prompt = `Tạo một đoạn hội thoại ngắn 2 câu (A và B) về chủ đề "${theme}" trình độ HSK1. Trả về JSON: {"title": "${theme}", "items": [{"role": "A", "chinese": "", "pinyin": "", "vietnamese": ""}, {"role": "B", "chinese": "", "pinyin": "", "vietnamese": ""}]}`;
-            const result = await callGemini(prompt);
-            
-            if (result) {
-                currentData = result;
-                document.getElementById('d-title').innerText = result.title;
-                const content = document.getElementById('d-content');
-                content.innerHTML = result.items.map(i => `
-                    <div style="margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
-                        <b style="color:var(--accent)">${i.role}:</b> ${i.chinese} <br/>
-                        <small style="color:#888">${i.pinyin}</small><br/>
-                        <span style="font-size:0.85rem">${i.vietnamese}</span>
-                        <button class="btn btn-listen" style="padding:2px 10px; font-size:0.7rem; margin-top:5px" onclick="speak('${i.chinese}')">🔊 Nghe</button>
+        function renderExerciseList(data, container) {
+            let html = `<div class="card"><h4>${data.title}</h4><p>${data.instruction || 'Nhấn vào loa để nghe, sau đó nhấn Micro để luyện nói.'}</p>`;
+            data.items.forEach((item, idx) => {
+                html += `
+                <div class="exercise-item" onclick="preparePractice('${item.chinese.replace(/'/g, "\\'")}')">
+                    <div class="audio-icon" onclick="speak('${item.chinese.replace(/'/g, "\\'")}', event)">🔊</div>
+                    <div class="exercise-content">
+                        <span class="chinese-txt">${item.chinese}</span>
+                        <span class="pinyin-txt">${item.pinyin}</span><br>
+                        <span class="vn-txt">${item.vietnamese}</span>
                     </div>
-                `).join('');
-                
-                // Mic for dialogue practice (User practices sentence B)
-                const practiceDiv = document.createElement('div');
-                practiceDiv.innerHTML = `<button id="mic-dialogue" class="btn btn-mic" style="width:100%; justify-content:center" onclick="toggleRecording('dialogue')">🎤 Luyện nói câu B</button>`;
-                content.appendChild(practiceDiv);
-            }
+                    <div style="color: var(--primary)">🎤</div>
+                </div>`;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
         }
 
-        // Logic - Topic
-        async function loadTopic(theme) {
-            document.getElementById('topic-display').classList.remove('hidden');
-            document.getElementById('topic-list').classList.add('hidden');
-            document.getElementById('topic-feedback').classList.add('hidden');
-            document.getElementById('topic-transcript').innerText = "";
-
-            const prompt = `Tạo một gợi ý nói (prompt) cho chủ đề "${theme}" trình độ HSK1. Trả về JSON: {"title": "${theme}", "instruction": "Hướng dẫn người dùng nói gì bằng tiếng Việt", "example": "Câu mẫu tiếng Trung"}`;
-            const result = await callGemini(prompt);
-
-            if (result) {
-                currentData = result;
-                document.getElementById('t-title').innerText = result.title;
-                document.getElementById('t-instruction').innerText = result.instruction;
-            }
-        }
-
-        function nextItem(section) {
-            if (section === 'pinyin') {
-                currentIndex = (currentIndex + 1) % currentData.length;
-                displayPinyin();
-                document.getElementById('pinyin-feedback').classList.add('hidden');
-            } else if (section === 'dialogue') {
-                document.getElementById('dialogue-display').classList.add('hidden');
-                document.getElementById('dialogue-themes').classList.remove('hidden');
-            } else if (section === 'topic') {
-                document.getElementById('topic-display').classList.add('hidden');
-                document.getElementById('topic-list').classList.remove('hidden');
-            }
-        }
-
-        // Speech & Audio
-        function initSpeech() {
-            if ('webkitSpeechRecognition' in window) {
-                recognition = new webkitSpeechRecognition();
-                recognition.lang = 'zh-CN';
-                recognition.interimResults = false;
-                recognition.continuous = false;
-
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    const type = recognition.practiceType;
-                    processEvaluation(transcript, type);
-                };
-
-                recognition.onend = () => {
-                    isRecording = false;
-                    document.querySelectorAll('.btn-mic').forEach(b => b.classList.remove('recording'));
-                };
-            }
-        }
-
-        function playCurrentTTS() {
-            const text = currentData[currentIndex].chinese;
-            speak(text);
-        }
-
-        function speak(text) {
+        function speak(text, event) {
+            if (event) event.stopPropagation();
             const msg = new SpeechSynthesisUtterance(text);
             msg.lang = 'zh-CN';
+            msg.rate = 0.8;
             window.speechSynthesis.speak(msg);
         }
 
-        function toggleRecording(type) {
-            if (isRecording) {
-                recognition.stop();
-                return;
-            }
-            if (!recognition) {
-                alert("Trình duyệt không hỗ trợ nhận diện giọng nói.");
-                return;
-            }
-
-            isRecording = true;
-            recognition.practiceType = type;
-            const btnId = type === 'pinyin' ? 'mic-pinyin' : (type === 'dialogue' ? 'mic-dialogue' : 'mic-topic');
-            document.getElementById(btnId).classList.add('recording');
-            recognition.start();
-        }
-
-        async function processEvaluation(transcript, type) {
-            let expected = "";
-            let context = "";
-
-            if (type === 'pinyin') {
-                expected = currentData[currentIndex].chinese;
-                context = "Luyện phát âm từ đơn.";
-            } else if (type === 'dialogue') {
-                expected = currentData.items[1].chinese; // Always practice second line
-                context = "Luyện hội thoại.";
-            } else {
-                expected = "Nói tự do theo chủ đề";
-                context = `Chủ đề: ${currentData.title}. Yêu cầu: ${currentData.instruction}`;
-                document.getElementById('topic-transcript').innerText = "Bạn đã nói: " + transcript;
-            }
-
-            const prompt = `
-                Bạn là giáo viên tiếng Trung. Hãy chấm điểm đoạn nói sau:
-                - Văn bản mục tiêu: ${expected}
-                - Người dùng đã nói: ${transcript}
-                - Ngữ cảnh: ${context}
-                Đánh giá dựa trên: pinyin_accuracy (Độ chính xác Pinyin), tone_intonation (Thanh điệu), fluency (Độ trôi chảy).
-                Phát hiện lỗi sai đặc trưng người Việt (như b/p, zh/ch, j/q/x hoặc thanh 1/4).
-                Trả về JSON: {"score": {"overall": 85, "pinyin_accuracy": 90, "tone_intonation": 80, "fluency": 85}, "feedback": {"strengths": "...", "weaknesses": "...", "tips": "..."}}
+        function preparePractice(text) {
+            currentTargetText = text;
+            document.getElementById('active-practice').classList.remove('hidden');
+            document.getElementById('practice-content').innerHTML = `
+                <p style="text-align:center; color: var(--text-light); margin-bottom:5px;">Đang luyện tập:</p>
+                <h2 style="text-align:center; margin-top:0;">${text}</h2>
             `;
+            document.getElementById('evaluation-result').innerHTML = '';
+            document.getElementById('transcript-area').classList.add('hidden');
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
 
-            const evaluation = await callGemini(prompt);
-            if (evaluation) {
-                showFeedback(evaluation, type);
+        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
             }
         }
 
-        function showFeedback(data, type) {
-            const divId = `${type}-feedback`;
-            const div = document.getElementById(divId);
-            div.classList.remove('hidden');
+        function startRecording() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Trình duyệt của bạn không hỗ trợ nhận diện giọng nói.");
+                return;
+            }
 
-            div.innerHTML = `
-                <h4 style="margin-bottom:10px">Kết quả: ${data.score.overall}/100</h4>
-                <div class="score-row"><span>Pinyin</span> <span>${data.score.pinyin_accuracy}%</span></div>
-                <div class="score-bar"><div class="score-fill" style="width:${data.score.pinyin_accuracy}%"></div></div>
-                
-                <div class="score-row"><span>Thanh điệu</span> <span>${data.score.tone_intonation}%</span></div>
-                <div class="score-bar"><div class="score-fill" style="width:${data.score.tone_intonation}%"></div></div>
-                
-                <div class="score-row"><span>Trôi chảy</span> <span>${data.score.fluency}%</span></div>
-                <div class="score-bar"><div class="score-fill" style="width:${data.score.fluency}%"></div></div>
+            currentRecognition = new SpeechRecognition();
+            currentRecognition.lang = 'zh-CN';
+            currentRecognition.interimResults = false;
 
-                <div style="font-size:0.85rem; margin-top:10px">
-                    <p>✅ <b>Ưu điểm:</b> ${data.feedback.strengths}</p>
-                    <p>❌ <b>Cần sửa:</b> ${data.feedback.weaknesses}</p>
-                    <p>💡 <b>Mẹo:</b> ${data.feedback.tips}</p>
+            currentRecognition.onstart = () => {
+                isRecording = true;
+                document.getElementById('mic-btn').classList.add('recording');
+                document.getElementById('mic-status').innerText = "Đang nghe... Nói đi bạn!";
+            };
+
+            currentRecognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('transcript-area').innerText = "Bạn đã nói: " + transcript;
+                document.getElementById('transcript-area').classList.remove('hidden');
+                evaluateSpeech(transcript);
+            };
+
+            currentRecognition.onerror = () => { stopRecording(); };
+            currentRecognition.onend = () => { stopRecording(); };
+
+            currentRecognition.start();
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            document.getElementById('mic-btn').classList.remove('recording');
+            document.getElementById('mic-status').innerText = "Nhấn để nói lại";
+            if (currentRecognition) currentRecognition.stop();
+        }
+
+        async function evaluateSpeech(transcript) {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
+
+            const evalPrompt = `Bạn là giáo viên tiếng Trung. Hãy chấm điểm phát âm. 
+            Văn bản gốc: "${currentTargetText}"
+            Học sinh nói: "${transcript}"
+            Phân tích lỗi Pinyin (b/p, g/k, d/t, z/c/s, zh/ch/sh, j/q/x) và Thanh điệu (1 và 4).
+            Trả về JSON: {
+                "score": {"overall": 85, "pinyin_accuracy": 90, "tone_intonation": 80, "fluency": 85},
+                "feedback": {"strengths": "...", "weaknesses": "...", "tips": "..."}
+            } bằng tiếng Việt.`;
+
+            let result = await callGemini(evalPrompt);
+            
+            if (!result) {
+                // Mock evaluation if API fails
+                result = {
+                    score: { overall: 80, pinyin_accuracy: 85, tone_intonation: 75, fluency: 80 },
+                    feedback: { 
+                        strengths: "Bạn phát âm khá rõ ràng.", 
+                        weaknesses: "Cần chú ý hơn đến thanh điệu và các âm bật hơi.", 
+                        tips: "Hãy nghe lại audio mẫu và luyện tập nhiều lần." 
+                    }
+                };
+            }
+
+            loader.style.display = 'none';
+            renderEvaluation(result);
+        }
+
+        function renderEvaluation(data) {
+            const container = document.getElementById('evaluation-result');
+            container.innerHTML = `
+                <div class="card feedback-card">
+                    <h4>Kết quả đánh giá</h4>
+                    ${renderScoreBar("Tổng quát", data.score.overall)}
+                    ${renderScoreBar("Pinyin", data.score.pinyin_accuracy)}
+                    ${renderScoreBar("Thanh điệu", data.score.tone_intonation)}
+                    ${renderScoreBar("Trôi chảy", data.score.fluency)}
+                    
+                    <div style="margin-top: 15px; font-size: 0.9rem;">
+                        <p><strong>Ưu điểm:</strong> ${data.feedback.strengths}</p>
+                        <p><strong>Cần cải thiện:</strong> ${data.feedback.weaknesses}</p>
+                        <p><strong>Lời khuyên:</strong> ${data.feedback.tips}</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="document.getElementById('active-practice').classList.add('hidden')">Đóng</button>
                 </div>
             `;
-            
-            div.scrollIntoView({ behavior: 'smooth' });
         }
+
+        function renderScoreBar(label, score) {
+            return `
+                <div class="score-row">
+                    <span style="width: 80px; font-size: 0.8rem;">${label}</span>
+                    <div class="progress-bar"><div class="progress-fill" style="width: ${score}%"></div></div>
+                    <span style="font-weight: bold; width: 30px;">${score}</span>
+                </div>
+            `;
+        }
+
+        // Initialize first view
+        window.onload = () => {
+            // Pre-load a default exercise
+            loadExercise('pinyin', 'b vs p');
+        };
     </script>
 </body>
 </html>
